@@ -16,6 +16,7 @@ To install SimpleResult, you can download the source code or clone the repositor
 
 ```bash
 dotnet add package Shl.SimpleResult --version 1.0.1-beta
+```
 
 ## Usage Example
 
@@ -23,3 +24,4 @@ Here is an example of how to use the `Result<TValue>` class:
 
 ```csharp
 int result = Result<int>.Success(100);
+```
