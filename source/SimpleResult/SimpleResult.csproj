@@ -4,16 +4,27 @@
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-	  <!--<AssemblyVersion>1.0.0.0</AssemblyVersion>
+	  <AssemblyVersion>1.0.0.0</AssemblyVersion>
 	  <FileVersion>1.0.0.0</FileVersion>
-	  <InformationalVersion>beta1</InformationalVersion>-->
+	  <InformationalVersion>beta1</InformationalVersion>
+	  <Version>1.0.1-beta</Version>
     <PackageTags>Result; Result Pattern; .NET; C#</PackageTags>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-    <Authors>SaidSouhayel</Authors>
+    <Authors>Said Souhayel</Authors>
+	  <PackageId>Shl.SimpleResult</PackageId>
     <Description>A simple and lightweight implementation of the Result pattern for handling success and failure cases in C#. 
 Ideal for improving error handling and making your code more expressive and robust.
 </Description>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <Title>Simple Result</Title>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\..\README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
 
 </Project>
