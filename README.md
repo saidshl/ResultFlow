@@ -15,4 +15,4 @@ SimpleResult is a project aimed at providing a straightforward mechanism for han
 To install SimpleResult, you can download the source code or clone the repository using:
 
 ```bash
-git clone https://github.com/said1993/SimpleResult.git
+dotnet add package Shl.SimpleResult --version 1.0.0
