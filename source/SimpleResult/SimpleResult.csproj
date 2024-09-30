@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+	  <!--<AssemblyVersion>1.0.0.0</AssemblyVersion>
+	  <FileVersion>1.0.0.0</FileVersion>
+	  <InformationalVersion>beta1</InformationalVersion>-->
+    <PackageTags>Result; Result Pattern; .NET; C#</PackageTags>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <Authors>SaidSouhayel</Authors>
+    <Description>A simple and lightweight implementation of the Result pattern for handling success and failure cases in C#. 
+Ideal for improving error handling and making your code more expressive and robust.
+</Description>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+  </PropertyGroup>
+
+</Project>
