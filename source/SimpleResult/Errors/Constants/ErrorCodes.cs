@@ -131,10 +131,16 @@ public static class ErrorCodes
         public const string UnexpectedError = "INTERNAL_SERVER_UNEXPECTED_ERROR";
     }
 
-    /// <summary>NEW - HTTP 429</summary>
+    /// <summary>
+    /// HTTP 429 - Too Many Requests error codes.
+    /// </summary>
     public static class TooManyRequests
     {
+        /// <summary>Rate limit has been exceeded.</summary>
         public const string Code = "TOO_MANY_REQUESTS";
+
+        /// <summary>Rate limit exceeded with retry information.</summary>
+        public const string RateLimitExceeded = "TOO_MANY_REQUESTS_RATE_LIMIT";
     }
 
     /// <summary>

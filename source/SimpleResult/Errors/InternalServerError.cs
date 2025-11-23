@@ -1,7 +1,6 @@
-﻿using SimpleResult.Errors;
-using SimpleResult.Errors.Constants;
+﻿using SimpleResult.Errors.Constants;
 
-namespace Common.Results;
+namespace SimpleResult.Errors;
 
 /// <summary>
 /// Represents an error indicating that an unexpected internal server condition has occurred. Used to encapsulate

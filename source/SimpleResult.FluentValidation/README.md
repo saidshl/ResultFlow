@@ -607,10 +607,6 @@ Contributions are welcome! You can:
 - 💡 Suggest features in [Discussions](https://github.com/said1993/SimpleResult/discussions)
 - 🔨 Submit Pull Requests with improvements
 
-## 📄 License
-
-MIT - See the [LICENSE](../../LICENSE) file for details.
-
 ## 💬 Support
 
 Need help?

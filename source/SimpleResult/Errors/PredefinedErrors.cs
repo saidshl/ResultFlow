@@ -1,26 +1,25 @@
-﻿using Common.Results;
-
-namespace SimpleResult.Errors;
+﻿using SimpleResult.Errors;
+using SimpleResult.Errors.Constants;
 
 public static class PredefinedErrors
 {
     public static ValidationError ValidationFailed(string message, string? details = null) =>
-        new("VALIDATION_FAILED", message, details);
+        new(ErrorCodes.UnprocessableEntity.ValidationFailed, message, details);
 
     public static BadRequestError BadRequest(string message, string? details = null) =>
-        new("BAD_REQUEST", message, details);
+        new(ErrorCodes.BadRequest.Code, message, details);
 
     public static NotFoundError NotFound(string resourceName, string? details = null) =>
-        new("NOT_FOUND", $"The requested {resourceName} was not found.", details);
+        new(ErrorCodes.NotFound.Code, $"The requested {resourceName} was not found.", details);
 
     public static UnauthorizedError Unauthorized(string? details = null) =>
-        new("UNAUTHORIZED", "The request requires authentication.", details);
+        new(ErrorCodes.Unauthorized.Code, "The request requires authentication.", details);
 
     public static ConflictError Conflict(string message, string? details = null) =>
-        new("CONFLICT", message, details);
+        new(ErrorCodes.Conflict.Code, message, details);
 
     public static InternalServerError InternalError(string message = "An internal server error occurred.", Exception? ex = null) =>
-        new("INTERNAL_SERVER_ERROR", message, ex?.Message, InnerException: ex);
+        new(ErrorCodes.InternalServer.Code, message, ex?.Message, InnerException: ex);
 
     public static Error CustomError(string code, string message, string? details = null) =>
         new(code, message, details);

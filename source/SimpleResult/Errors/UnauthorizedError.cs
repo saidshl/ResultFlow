@@ -1,7 +1,6 @@
-﻿using SimpleResult.Errors;
-using SimpleResult.Errors.Constants;
+﻿using SimpleResult.Errors.Constants;
 
-namespace Common.Results;
+namespace SimpleResult.Errors;
 
 /// <summary>
 /// Represents an error indicating that a request was denied due to missing or invalid authentication credentials.

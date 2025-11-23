@@ -2,6 +2,23 @@
 
 A simple, lightweight, and powerful implementation of the **Result Pattern** for C# that provides elegant error handling and success result management. Designed for building robust, maintainable applications with clear error flow control.
 
+## 📚 Documentation Navigation
+
+### Core Packages
+
+| Package | Description | Documentation |
+|---------|-------------|-----------------|
+| **Shl.SimpleResult** | Core Result pattern library with zero dependencies | 📖 [This Document](#simpleresult) |
+| **Shl.SimpleResult.AspNetCore** | ASP.NET Core integration with automatic HTTP status code mapping | 📖 [View Documentation](./source/SimpleResult.AspNetCore/README.md) |
+| **Shl.SimpleResult.FluentValidation** | FluentValidation seamless integration for validation results | 📖 [View Documentation](./source/SimpleResult.FluentValidation/README.md) |
+
+**Future Extensions:**
+- 🔄 **Shl.SimpleResult.Logging** - Structured logging integration (coming in v1.1)
+- 🔄 **Shl.SimpleResult.Testing** - Unit testing assertions (coming in v1.1)
+- 🔄 **Shl.SimpleResult.Mapping** - AutoMapper integration (coming in v1.2)
+
+---
+
 ## ✨ Features
 
 - 🎯 **Type-Safe Result Pattern** - Strongly-typed success and failure handling without exceptions for flow control
@@ -641,10 +658,6 @@ cd SimpleResult
 dotnet build
 dotnet test
 ```
-
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ## 🙏 Support
 

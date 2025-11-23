@@ -1,5 +1,4 @@
-﻿using Common.Results;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using SimpleResult.Errors;
 using SimpleResult.Results;
 

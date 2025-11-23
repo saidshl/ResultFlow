@@ -1,7 +1,6 @@
-﻿using SimpleResult.Errors;
-using SimpleResult.Errors.Constants;
+﻿using SimpleResult.Errors.Constants;
 
-namespace Common.Results;
+namespace SimpleResult.Errors;
 
 /// <summary>
 /// Represents an error indicating that a request could not be completed due to a conflict with the current state of the

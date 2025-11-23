@@ -1,7 +1,6 @@
-﻿using SimpleResult.Errors;
-using SimpleResult.Errors.Constants;
+﻿using SimpleResult.Errors.Constants;
 
-namespace Common.Results;
+namespace SimpleResult.Errors;
 
 /// <summary>
 /// Represents an error indicating that a request is invalid or malformed, typically corresponding to an HTTP 400 Bad
