@@ -326,110 +326,6 @@ var error = ErrorBuilder
     .Build();
 ```
 
-## 🏢 ASP.NET Core Integration
-
-### Controller Usage (Coming in v1.0.2)
-
-```csharp
-[ApiController]
-[Route("api/[controller]")]
-public class UsersController : ControllerBase
-{
-    private readonly IUserService _userService;
-
-    [HttpGet("{id}")]
-    [ProducesResponseType(typeof(User), 200)]
-    [ProducesResponseType(404)]
-    [ProducesResponseType(500)]
-    public async Task<IActionResult> GetUser(int id)
-    {
-        var result = await _userService.GetUserByIdAsync(id);
-        return result.ToActionResult();  // ✨ One line!
-    }
-
-    [HttpPost]
-    [ProducesResponseType(typeof(User), 200)]
-    [ProducesResponseType(400)]
-    [ProducesResponseType(409)]
-    [ProducesResponseType(500)]
-    public async Task<IActionResult> CreateUser(CreateUserRequest request)
-    {
-        var result = await _userService.CreateUserAsync(request);
-        return result.ToActionResult();
-    }
-
-    [HttpPut("{id}")]
-    [ProducesResponseType(typeof(User), 200)]
-    [ProducesResponseType(400)]
-    [ProducesResponseType(404)]
-    [ProducesResponseType(409)]
-    [ProducesResponseType(500)]
-    public async Task<IActionResult> UpdateUser(int id, UpdateUserRequest request)
-    {
-        var result = await _userService.UpdateUserAsync(id, request);
-        return result.ToActionResult();
-    }
-
-    [HttpDelete("{id}")]
-    [ProducesResponseType(200)]
-    [ProducesResponseType(404)]
-    [ProducesResponseType(500)]
-    public async Task<IActionResult> DeleteUser(int id)
-    {
-        var result = await _userService.DeleteUserAsync(id);
-        return result.ToActionResult();
-    }
-}
-```
-
-### Response Examples
-
-**Success Response (200 OK):**
-```json
-{
-  "id": 1,
-  "name": "John Doe",
-  "email": "john@example.com"
-}
-```
-
-**Error Response (400 Bad Request):**
-```json
-{
-  "code": "BAD_REQUEST_INVALID_PARAMETER",
-  "message": "The parameter 'email' is invalid: Invalid email format",
-  "details": "Email must follow pattern: user@example.com",
-  "metadata": {
-    "parameterName": "email",
-    "providedValue": "invalid-email"
-  }
-}
-```
-
-**Error Response (404 Not Found):**
-```json
-{
-  "code": "NOT_FOUND",
-  "message": "The User with identifier '999' was not found.",
-  "metadata": {
-    "resourceName": "User",
-    "identifier": 999
-  }
-}
-```
-
-**Error Response (409 Conflict):**
-```json
-{
-  "code": "CONFLICT_DUPLICATE_RESOURCE",
-  "message": "A Email with the value 'john@example.com' already exists.",
-  "metadata": {
-    "resourceName": "Email",
-    "conflictingValue": "john@example.com"
-  }
-}
-```
-
 ## 💼 Real-World Examples
 
 ### Example 1: User Service with Validation
@@ -745,14 +641,6 @@ cd SimpleResult
 dotnet build
 dotnet test
 ```
-
-## 📋 Roadmap
-
-- ✅ **v1.0.0** - Core Result pattern, comprehensive error types, ErrorBuilder, factory methods
-- 🔲 **v1.0.2** - ASP.NET Core extensions (ToActionResult)
-- 🔲 **v1.1.0** - FluentValidation integration
-- 🔲 **v1.2.0** - Testing extensions, Logging integration
-- 🔲 **v2.0.0** - Async support, distributed tracing, additional integrations
 
 ## 📄 License
 

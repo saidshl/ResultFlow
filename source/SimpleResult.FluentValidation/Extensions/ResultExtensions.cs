@@ -1,15 +1,15 @@
 ﻿using FluentValidation;
 using FluentValidation.Results;
-using Newtonsoft.Json;
 using SimpleResult.Errors;
 using SimpleResult.Results;
+using System.Text.Json;
 
-namespace SimpleResult.Extensions.FluentValidation;
+namespace SimpleResult.FluentValidation.Extensions;
 
 /// <summary>
-/// Provides extension methods for integrating FluentValidation with the SimpleResult pattern.
+/// Extension methods for converting FluentValidation results to SimpleResult.Results.
 /// </summary>
-public static class FluentValidationExtensions
+public static class ResultExtensions
 {
     /// <summary>
     /// Converts FluentValidation results to Result{T}
@@ -32,7 +32,7 @@ public static class FluentValidationExtensions
         return Result<T>.Failure(
             ValidationError.WithDefaults(
                 "Validation failed",
-                JsonConvert.SerializeObject(errors),
+                JsonSerializer.Serialize(errors),
                 new Dictionary<string, object> { { "errors", errors } }
             )
         );
