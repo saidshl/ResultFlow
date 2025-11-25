@@ -276,6 +276,44 @@ var result = ValidateUser(user)
 // Short-circuits on first failure
 ```
 
+### Async Operations
+
+ResultFlow provides seamless support for async operations through `Task<Result<T>>` and `Task<VoidResult>` extensions. This allows you to chain async methods without manually awaiting them at each step.
+
+#### **MapAsync & BindAsync - Async Chaining**
+
+```csharp
+public async Task<Result<UserDto>> GetUserDtoAsync(int userId)
+{
+    return await _repository.GetUserAsync(userId)
+        .BindAsync(user => _validator.ValidateAsync(user))
+        .MapAsync(user => _mapper.MapToDtoAsync(user));
+}
+```
+
+#### **TapAsync - Async Side Effects**
+
+```csharp
+public async Task<Result<User>> CreateUserAsync(User user)
+{
+    return await ValidateUserAsync(user)
+        .TapAsync(u => _logger.LogInformationAsync($"Creating user {u.Name}"))
+        .TapAsync(u => _repository.AddAsync(u))
+        .TapErrorAsync(e => _logger.LogErrorAsync($"Failed: {e.Message}"));
+}
+```
+
+#### **MatchAsync - Async Pattern Matching**
+
+```csharp
+var result = await GetUserAsync(1);
+
+await result.MatchAsync(
+    onSuccess: async user => await SendEmailAsync(user),
+    onFailure: async error => await LogErrorAsync(error)
+);
+```
+
 ### Error Value Retrieval
 
 ```csharp
@@ -643,6 +681,23 @@ TError Build<TError>() where TError : Error, new()
 
 static ErrorBuilder Create(string code, string message)
 static ErrorBuilder Empty()
+```
+
+### Task Extensions
+
+Extensions for `Task<Result<T>>` and `Task<VoidResult>`:
+
+```csharp
+// Async Transformations
+Task<Result<TNew>> MapAsync<T, TNew>(this Task<Result<T>>, Func<T, Task<TNew>>)
+Task<Result<TNew>> BindAsync<T, TNew>(this Task<Result<T>>, Func<T, Task<Result<TNew>>>)
+
+// Async Side Effects
+Task<Result<T>> TapAsync<T>(this Task<Result<T>>, Func<T, Task>)
+Task<Result<T>> TapErrorAsync<T>(this Task<Result<T>>, Func<Error, Task>)
+
+// Async Pattern Matching
+Task<TResult> MatchAsync<T, TResult>(this Task<Result<T>>, Func<T, Task<TResult>>, Func<Error, Task<TResult>>)
 ```
 
 ## ?? Contributing
