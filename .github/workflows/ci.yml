@@ -1,0 +1,36 @@
+name: CI Build
+
+on:
+  push:
+    branches: [ master, main, develop ]
+  pull_request:
+    branches: [ master, main, develop ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    strategy:
+      matrix:
+        dotnet-version: ['8.0.x', '9.0.x']
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    
+    - name: Setup .NET ${{ matrix.dotnet-version }}
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: ${{ matrix.dotnet-version }}
+    
+    - name: Restore dependencies
+      run: dotnet restore
+    
+    - name: Build
+      run: dotnet build --configuration Release --no-restore
+    
+    - name: Pack (validation only)
+      run: |
+        dotnet pack source/ResultFlow/ResultFlow.csproj --configuration Release --no-build --output ./artifacts
+        dotnet pack source/ResultFlow.AspNetCore/ResultFlow.AspNetCore.csproj --configuration Release --no-build --output ./artifacts
+        dotnet pack source/ResultFlow.FluentValidation/ResultFlow.FluentValidation.csproj --configuration Release --no-build --output ./artifacts

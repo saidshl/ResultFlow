@@ -5,8 +5,6 @@ VisualStudioVersion = 18.0.11205.157
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "source", "source", "{33C16FA0-5979-48BE-84B0-E25223A40C79}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{7D0DABF4-C9B6-4658-8002-17D296E375D6}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "sample", "sample", "{4B519AF9-FA0E-4E26-902E-16978FDCD4AF}"
 	ProjectSection(SolutionItems) = preProject
 		samples\GETTING_STARTED.md = samples\GETTING_STARTED.md
@@ -24,6 +22,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ResultFlow.Samples.FluentValidation", "samples\ResultFlow.Samples.FluentValidation\ResultFlow.Samples.FluentValidation.csproj", "{432D3F85-6F66-9ACB-E9B6-19C3C5E90A99}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ResultFlow.Samples.WebApi", "samples\ResultFlow.Samples.WebApi\ResultFlow.Samples.WebApi.csproj", "{04291478-F38B-176F-310A-0E4A410B38EF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{89526DE3-548F-4853-B64E-83D7E004A5F0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

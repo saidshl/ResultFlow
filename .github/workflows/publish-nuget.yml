@@ -1,0 +1,59 @@
+name: Publish NuGet Packages
+
+on:
+  push:
+    tags:
+      - 'v*.*.*'  # Trigger on version tags like v2.0.0
+  workflow_dispatch:  # Allow manual triggering
+    inputs:
+      version:
+        description: 'Version to publish (e.g., 2.0.0)'
+        required: false
+        type: string
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0  # Full history for versioning
+    
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: |
+          8.0.x
+          9.0.x
+    
+    - name: Restore dependencies
+      run: dotnet restore
+    
+    - name: Build solution
+      run: dotnet build --configuration Release --no-restore
+    
+    - name: Pack ResultFlow
+      run: dotnet pack source/ResultFlow/ResultFlow.csproj --configuration Release --no-build --output ./artifacts
+    
+    - name: Pack ResultFlow.AspNetCore
+      run: dotnet pack source/ResultFlow.AspNetCore/ResultFlow.AspNetCore.csproj --configuration Release --no-build --output ./artifacts
+    
+    - name: Pack ResultFlow.FluentValidation
+      run: dotnet pack source/ResultFlow.FluentValidation/ResultFlow.FluentValidation.csproj --configuration Release --no-build --output ./artifacts
+    
+    - name: List packages
+      run: ls -la ./artifacts
+    
+    - name: Push to NuGet.org
+      run: dotnet nuget push ./artifacts/*.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json --skip-duplicate
+      env:
+        NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}
+    
+    - name: Upload artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: nuget-packages
+        path: ./artifacts/*.nupkg
+        retention-days: 30
