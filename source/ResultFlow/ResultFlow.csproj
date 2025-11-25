@@ -8,13 +8,13 @@
     <Nullable>enable</Nullable>
 
     <!-- Assembly versioning -->
-    <AssemblyVersion>1.0.1.0</AssemblyVersion>
-    <FileVersion>1.0.1.0</FileVersion>
-    <InformationalVersion>1.0.1-beta</InformationalVersion>
-    <Version>1.0.1-beta</Version>
+    <AssemblyVersion>2.0.0.0</AssemblyVersion>
+    <FileVersion>2.0.0.0</FileVersion>
+    <InformationalVersion>2.0.0</InformationalVersion>
+    <Version>2.0.0</Version>
 
     <!-- NuGet package metadata -->
-    <PackageId>Shl.ResultFlow</PackageId>
+    <PackageId>ResultFlow</PackageId>
     <Title>ResultFlow - Result Pattern for .NET</Title>
     <Authors>Said Souhayel</Authors>
     <Description>
@@ -24,8 +24,8 @@
     </Description>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageTags>Result;Result-Pattern;Railway-Oriented-Programming;Functional-Programming;Error-Handling;Monads;CSharp;dotnet;net8;net9;net10</PackageTags>
-    <PackageProjectUrl>https://github.com/said1993/ResultFlow</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/said1993/ResultFlow</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/saidshl/ResultFlow</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/saidshl/ResultFlow</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     

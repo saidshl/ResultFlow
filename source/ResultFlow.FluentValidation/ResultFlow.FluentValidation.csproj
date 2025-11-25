@@ -8,11 +8,23 @@
     <Nullable>enable</Nullable>
 
     <!-- Assembly versioning -->
-    <AssemblyVersion>1.0.1.0</AssemblyVersion>
-    <FileVersion>1.0.1.0</FileVersion>
-    <InformationalVersion>1.0.1-beta</InformationalVersion>
-    <Version>1.0.1-beta</Version>
-    <RepositoryUrl>https://github.com/said1993/ResultFlow</RepositoryUrl>
+    <AssemblyVersion>2.0.0.0</AssemblyVersion>
+    <FileVersion>2.0.0.0</FileVersion>
+    <InformationalVersion>2.0.0</InformationalVersion>
+    <Version>2.0.0</Version>
+
+    <!-- NuGet package metadata -->
+    <PackageId>ResultFlow.FluentValidation</PackageId>
+    <Title>ResultFlow.FluentValidation - FluentValidation Integration</Title>
+    <Authors>Said Souhayel</Authors>
+    <Description>
+      FluentValidation integration for ResultFlow. Provides seamless conversion between FluentValidation 
+      ValidationResult and the Result pattern, enabling fluent validation with railway-oriented programming.
+    </Description>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageTags>Result;Result-Pattern;FluentValidation;Validation;Error-Handling;dotnet;net8;net9;net10</PackageTags>
+    <PackageProjectUrl>https://github.com/saidshl/ResultFlow</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/saidshl/ResultFlow</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     

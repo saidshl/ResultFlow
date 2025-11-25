@@ -9,13 +9,13 @@ This package provides extension methods to seamlessly convert `Result<TValue>` a
 Install the NuGet package:
 
 ```bash
-dotnet add package Shl.ResultFlow.AspNetCore --version 1.0.1-beta
+dotnet add package ResultFlow.AspNetCore --version 1.0.1-beta
 ```
 
 Or via Package Manager:
 
 ```powershell
-Install-Package Shl.ResultFlow.AspNetCore -Version 1.0.1-beta
+Install-Package ResultFlow.AspNetCore -Version 1.0.1-beta
 ```
 
 ## ?? Quick Start

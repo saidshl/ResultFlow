@@ -1,24 +1,24 @@
-# ResultFlow.FluentValidation
+﻿# ResultFlow.FluentValidation
 
 FluentValidation integration for [ResultFlow](https://github.com/said1993/ResultFlow).
 
 This package provides seamless integration between [FluentValidation](https://fluentvalidation.net/) and ResultFlow, allowing you to convert validation results into `Result<T>` objects with comprehensive error handling.
 
-## ?? Installation
+## 📦 Installation
 
 Install the NuGet package:
 
 ```bash
-dotnet add package Shl.ResultFlow.FluentValidation --version 1.0.1-beta
+dotnet add package ResultFlow.FluentValidation --version 1.0.1-beta
 ```
 
 Or via Package Manager:
 
 ```powershell
-Install-Package Shl.ResultFlow.FluentValidation -Version 1.0.1-beta
+Install-Package ResultFlow.FluentValidation -Version 1.0.1-beta
 ```
 
-## ?? Quick Start
+## 🚀 Quick Start
 
 ```csharp
 using FluentValidation;
@@ -56,16 +56,16 @@ public class UserService
 }
 ```
 
-## ? Features
+## ✨ Features
 
-- ? **Seamless Integration** - Convert FluentValidation results directly to `Result<T>`
-- ? **Comprehensive Error Details** - Capture all validation errors with property-level grouping
-- ? **Async Support** - Full async/await validation support
-- ? **Type Safe** - Strongly typed validation with generic support
-- ? **Rich Metadata** - Validation errors stored as metadata for API responses
-- ? **Zero Configuration** - Works out of the box with existing validators
+- ✅ **Seamless Integration** - Convert FluentValidation results directly to `Result<T>`
+- ✅ **Comprehensive Error Details** - Capture all validation errors with property-level grouping
+- ✅ **Async Support** - Full async/await validation support
+- ✅ **Type Safe** - Strongly typed validation with generic support
+- ✅ **Rich Metadata** - Validation errors stored as metadata for API responses
+- ✅ **Zero Configuration** - Works out of the box with existing validators
 
-## ?? How It Works
+## 🔄 How It Works
 
 The FluentValidation integration provides two extension methods:
 
@@ -78,8 +78,8 @@ public static Result<T> ToResult<T>(
 ```
 
 Converts a FluentValidation `ValidationResult` to a `Result<T>`:
-- **On Success** ? Returns `Result<T>.Success(value)`
-- **On Failure** ? Returns `Result<T>.Failure(error)` with validation errors grouped by property
+- **On Success** ✅ Returns `Result<T>.Success(value)`
+- **On Failure** ❌ Returns `Result<T>.Failure(error)` with validation errors grouped by property
 
 ### 2. ValidateAsync<T> - Validate and Convert
 
@@ -91,7 +91,7 @@ public static async Task<Result<T>> ValidateAsync<T>(
 
 Validates an object and returns a `Result<T>` in a single call.
 
-## ?? Usage Examples
+## 📖 Usage Examples
 
 ### Basic Validation
 
@@ -291,7 +291,7 @@ public class OrderService
 }
 ```
 
-## ?? Error Response Format
+## 📋 Error Response Format
 
 When validation fails, the error response includes detailed information:
 
@@ -310,7 +310,7 @@ When validation fails, the error response includes detailed information:
 }
 ```
 
-## ?? Real-World Example: Complete Service
+## 🌍 Real-World Example: Complete Service
 
 ```csharp
 using FluentValidation;
@@ -497,7 +497,7 @@ public class ProductsController : ControllerBase
 }
 ```
 
-## ?? Integration with ASP.NET Core
+## 🔗 Integration with ASP.NET Core
 
 When combined with `Shl.ResultFlow.AspNetCore`, validation errors automatically map to HTTP 422 responses:
 
@@ -513,7 +513,7 @@ public async Task<IActionResult> CreateUser(CreateUserRequest request)
 }
 ```
 
-## ?? API Reference
+## 📚 API Reference
 
 ### ToResult<T>
 
@@ -545,7 +545,7 @@ public static async Task<Result<T>> ValidateAsync<T>(
     T instance)
 ```
 
-## ?? Testing with Validation
+## 🧪 Testing with Validation
 
 ```csharp
 [TestClass]
@@ -600,46 +600,46 @@ public class ProductValidatorTests
 }
 ```
 
-## ?? Contributing
+## 🤝 Contributing
 
 Contributions are welcome! You can:
-- ?? Report bugs by creating an [Issue](https://github.com/said1993/ResultFlow/issues)
-- ?? Suggest features in [Discussions](https://github.com/said1993/ResultFlow/discussions)
-- ?? Submit Pull Requests with improvements
+- 🐞 Report bugs by creating an [Issue](https://github.com/said1993/ResultFlow/issues)
+- 💡 Suggest features in [Discussions](https://github.com/said1993/ResultFlow/discussions)
+- 🔧 Submit Pull Requests with improvements
 
-## ?? Support
+## 💬 Support
 
 Need help?
-- ? Create an [Issue](https://github.com/said1993/ResultFlow/issues)
-- ?? Start a [Discussion](https://github.com/said1993/ResultFlow/discussions)
-- ?? Visit the [Repository](https://github.com/said1993/ResultFlow)
+- ❓ Create an [Issue](https://github.com/said1993/ResultFlow/issues)
+- 💬 Start a [Discussion](https://github.com/said1993/ResultFlow/discussions)
+- 📚 Visit the [Repository](https://github.com/said1993/ResultFlow)
 
-## ?? Related Packages
+## 🔗 Related Packages
 
 - [Shl.ResultFlow](https://www.nuget.org/packages/Shl.ResultFlow/) - Core library
 - [Shl.ResultFlow.AspNetCore](https://www.nuget.org/packages/Shl.ResultFlow.AspNetCore/) - ASP.NET Core extensions
 - Shl.ResultFlow.Logging - Structured logging integration (coming soon)
 
-## ?? Workflow Example
+## 📊 Workflow Example
 
 ```
 User Input
-    ?
+    ↓
 Validator (FluentValidation)
-    ?
+    ↓
 ValidateAsync() Extension
-    ?
+    ↓
 Result<T> (Success or Failure)
-    ?
+    ↓
 Service Logic (if validation passed)
-    ?
+    ↓
 ToActionResult() Extension (if using ASP.NET Core)
-    ?
+    ↓
 HTTP Response (200, 400, 422, 500, etc.)
 ```
 
 ---
 
-**Made with ?? by [said1993](https://github.com/said1993)**
+**Made with ❤️ by [said1993](https://github.com/said1993)**
 
 Updated: 2025-11-23 19:08:17 UTC
