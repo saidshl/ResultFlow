@@ -1,56 +1,56 @@
-﻿# SimpleResult
+# EasyResult
 
 A simple, lightweight, and powerful implementation of the **Result Pattern** for C# that provides elegant error handling and success result management. Designed for building robust, maintainable applications with clear error flow control.
 
-## 📚 Documentation Navigation
+## ?? Documentation Navigation
 
 ### Core Packages
 
 | Package | Description | Documentation |
 |---------|-------------|-----------------|
-| **Shl.SimpleResult** | Core Result pattern library with zero dependencies | 📖 [This Document](#simpleresult) |
-| **Shl.SimpleResult.AspNetCore** | ASP.NET Core integration with automatic HTTP status code mapping | 📖 [View Documentation](./source/SimpleResult.AspNetCore/README.md) |
-| **Shl.SimpleResult.FluentValidation** | FluentValidation seamless integration for validation results | 📖 [View Documentation](./source/SimpleResult.FluentValidation/README.md) |
+| **Shl.EasyResult** | Core Result pattern library with zero dependencies | ?? [This Document](#EasyResult) |
+| **Shl.EasyResult.AspNetCore** | ASP.NET Core integration with automatic HTTP status code mapping | ?? [View Documentation](./source/EasyResult.AspNetCore/README.md) |
+| **Shl.EasyResult.FluentValidation** | FluentValidation seamless integration for validation results | ?? [View Documentation](./source/EasyResult.FluentValidation/README.md) |
 
 **Future Extensions:**
-- 🔄 **Shl.SimpleResult.Logging** - Structured logging integration (coming in v1.1)
-- 🔄 **Shl.SimpleResult.Testing** - Unit testing assertions (coming in v1.1)
+- ?? **Shl.EasyResult.Logging** - Structured logging integration (coming in v1.1)
+- ?? **Shl.EasyResult.Testing** - Unit testing assertions (coming in v1.1)
 
 ---
 
-## ✨ Features
+## ? Features
 
-- 🎯 **Type-Safe Result Pattern** - Strongly-typed success and failure handling without exceptions for flow control
-- 🏗️ **Immutable Design** - `readonly struct` implementation for thread-safe, memory-efficient operations
-- 🔄 **Functional API** - Comprehensive functional programming support with `Map`, `Bind`, `Filter`, `Match`, and `Tap`
-- 📋 **Pattern Matching** - Full C# pattern matching support for elegant control flow
-- ⚡ **Non-Generic Result** - Support for void operations that don't return values
-- 🛡️ **Flexible Error Handling** - Rich error metadata, tracing, and exception wrapping for debugging
-- 🏢 **Enterprise-Ready** - Optimized for ASP.NET Core with seamless ActionResult conversion
-- 📦 **Zero Dependencies** - Core library has no external dependencies
-- 📄 **MIT Licensed** - Free for personal and commercial use
+- ?? **Type-Safe Result Pattern** - Strongly-typed success and failure handling without exceptions for flow control
+- ??? **Immutable Design** - `readonly struct` implementation for thread-safe, memory-efficient operations
+- ?? **Functional API** - Comprehensive functional programming support with `Map`, `Bind`, `Filter`, `Match`, and `Tap`
+- ?? **Pattern Matching** - Full C# pattern matching support for elegant control flow
+- ? **Non-Generic Result** - Support for void operations that don't return values
+- ??? **Flexible Error Handling** - Rich error metadata, tracing, and exception wrapping for debugging
+- ?? **Enterprise-Ready** - Optimized for ASP.NET Core with seamless ActionResult conversion
+- ?? **Zero Dependencies** - Core library has no external dependencies
+- ?? **MIT Licensed** - Free for personal and commercial use
 
-## 📦 Installation
+## ?? Installation
 
 Install the NuGet package:
 
 ```bash
-dotnet add package Shl.SimpleResult
+dotnet add package Shl.EasyResult
 ```
 
 Or via Package Manager:
 
 ```powershell
-Install-Package Shl.SimpleResult
+Install-Package Shl.EasyResult
 ```
 
-## 🚀 Quick Start
+## ?? Quick Start
 
 ### Basic Usage
 
 ```csharp
-using SimpleResult.Results;
-using SimpleResult.Errors;
+using EasyResult.Results;
+using EasyResult.Errors;
 
 // Success case
 var userResult = Result<User>.Success(new User { Id = 1, Name = "John Doe" });
@@ -112,11 +112,11 @@ deleteResult.Match(
 );
 ```
 
-## 🔧 Core Concepts
+## ?? Core Concepts
 
 ### Error Handling
 
-SimpleResult provides multiple ways to create and handle errors:
+EasyResult provides multiple ways to create and handle errors:
 
 #### **1. PredefinedErrors - Quick Factory Methods**
 
@@ -301,9 +301,9 @@ var user = userResult.GetValueOrThrow(error =>
 );
 ```
 
-## 📌 Error Types
+## ?? Error Types
 
-SimpleResult includes comprehensive HTTP error types with factory methods:
+EasyResult includes comprehensive HTTP error types with factory methods:
 
 | Error Type | HTTP Code | Factory Methods | Use Case |
 |-----------|-----------|-----------------|----------|
@@ -342,7 +342,7 @@ var error = ErrorBuilder
     .Build();
 ```
 
-## 💼 Real-World Examples
+## ?? Real-World Examples
 
 ### Example 1: User Service with Validation
 
@@ -551,7 +551,7 @@ private Result<User> ValidateUserRequest(UserRequest request)
 }
 ```
 
-## 📚 API Reference
+## ?? API Reference
 
 ### Result<TValue>
 
@@ -645,28 +645,28 @@ static ErrorBuilder Create(string code, string message)
 static ErrorBuilder Empty()
 ```
 
-## 🤝 Contributing
+## ?? Contributing
 
-Contributions are welcome! Please feel free to submit issues or pull requests on [GitHub](https://github.com/said1993/SimpleResult).
+Contributions are welcome! Please feel free to submit issues or pull requests on [GitHub](https://github.com/said1993/EasyResult).
 
 ### Development Setup
 
 ```bash
-git clone https://github.com/said1993/SimpleResult.git
-cd SimpleResult
+git clone https://github.com/said1993/EasyResult.git
+cd EasyResult
 dotnet build
 dotnet test
 ```
 
-## 🙏 Support
+## ?? Support
 
 For questions, issues, or suggestions:
-- 📧 Create an [Issue](https://github.com/said1993/SimpleResult/issues)
-- 💬 Start a [Discussion](https://github.com/said1993/SimpleResult/discussions)
-- 🌐 Visit [Repository](https://github.com/said1993/SimpleResult)
+- ?? Create an [Issue](https://github.com/said1993/EasyResult/issues)
+- ?? Start a [Discussion](https://github.com/said1993/EasyResult/discussions)
+- ?? Visit [Repository](https://github.com/said1993/EasyResult)
 
 ---
 
-**Made with ❤️ by [said1993](https://github.com/said1993)**
+**Made with ?? by [said1993](https://github.com/said1993)**
 
 Last updated: 2025-11-23 10:13:05 UTC
