@@ -15,7 +15,7 @@ namespace ResultFlow.Errors;
 /// <param name="Metadata">Optional metadata dictionary containing contextual information related to the error, such as resource identifiers or
 /// names.</param>
 /// <param name="InnerException">Optional inner exception that caused the not found error, useful for debugging and error tracing.</param>
-public record NotFoundError(
+public sealed record NotFoundError(
     string Code,
     string Message,
     string? Details = null,

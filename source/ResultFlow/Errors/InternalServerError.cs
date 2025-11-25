@@ -17,7 +17,7 @@ namespace ResultFlow.Errors;
 /// <param name="Metadata">Optional metadata dictionary containing contextual information related to the error, such as operation names or
 /// exception types.</param>
 /// <param name="InnerException">The underlying exception that caused the internal server error, if available.</param>
-public record InternalServerError(
+public sealed record InternalServerError(
     string Code,
     string Message,
     string? Details = null,

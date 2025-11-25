@@ -14,7 +14,7 @@ namespace ResultFlow.Errors;
 /// <param name="Details">Optional additional details that provide more context about the conflict.</param>
 /// <param name="Metadata">Optional metadata dictionary containing contextual information related to the conflict.</param>
 /// <param name="InnerException">Optional inner exception that caused this conflict error, used for debugging or error tracing.</param>
-public record ConflictError(
+public sealed record ConflictError(
     string Code,
     string Message,
     string? Details = null,

@@ -11,7 +11,7 @@ namespace ResultFlow.Errors;
 /// <param name="Details">/// Optional extended detail (e.g. contextual explanation or troubleshooting guidance)./// </param>
 /// <param name="Metadata">/// Optional structured key/value data providing additional context (e.g. requiredRole, userRole)./// </param>
 /// <param name="InnerException">/// Optional underlying exception captured for diagnostics (not usually exposed externally)./// </param>
-public record ForbiddenError(
+public sealed record ForbiddenError(
     string Code,
     string Message,
     string? Details = null,

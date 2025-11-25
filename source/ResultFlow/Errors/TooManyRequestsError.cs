@@ -11,7 +11,7 @@ namespace ResultFlow.Errors;
 /// <param name="Details">/// Optional extended detail (e.g. quota policy explanation or retry guidance)./// </param>
 /// <param name="Metadata">/// Optional structured key/value data providing additional context (e.g. limit, remaining, retryAfterSeconds, resetAt)./// </param>
 /// <param name="InnerException">/// Optional underlying exception captured for diagnostics (not usually exposed externally)./// </param>
-public record TooManyRequestsError(
+public sealed record TooManyRequestsError(
     string Code,
     string Message,
     string? Details = null,

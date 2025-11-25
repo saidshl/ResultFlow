@@ -13,7 +13,7 @@ namespace ResultFlow.Errors;
 /// <param name="Details">Optional additional details providing context about the unauthorized error.</param>
 /// <param name="Metadata">Optional metadata dictionary containing supplementary information related to the error.</param>
 /// <param name="InnerException">The inner exception that caused this unauthorized error, if available.</param>
-public record UnauthorizedError(
+public sealed record UnauthorizedError(
     string Code,
     string Message,
     string? Details = null,

@@ -17,7 +17,7 @@ namespace ResultFlow.Errors;
 /// <param name="Metadata">Optional metadata dictionary containing contextual information related to the error, such as invalid parameters or
 /// missing fields.</param>
 /// <param name="InnerException">Optional inner exception that caused the bad request error, useful for debugging or error tracing.</param>
-public record BadRequestError(
+public sealed record BadRequestError(
     string Code,
     string Message,
     string? Details = null,

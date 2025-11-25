@@ -13,7 +13,7 @@ namespace ResultFlow.Errors;
 /// <param name="Details">Optional. Additional details about the validation error, or null if not specified.</param>
 /// <param name="Metadata">Optional. A dictionary containing supplementary metadata related to the error, or null if not specified.</param>
 /// <param name="InnerException">Optional. The underlying exception that caused this validation error, or null if not applicable.</param>
-public record ValidationError(
+public sealed record ValidationError(
     string Code,
     string Message,
     string? Details = null,

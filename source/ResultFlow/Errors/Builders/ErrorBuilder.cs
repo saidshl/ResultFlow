@@ -10,7 +10,7 @@ namespace ResultFlow.Errors.Builders;
 /// builder enforces that both error code and message are set before building an Error. Additional metadata and details
 /// can be attached to enrich error context. This class is not thread-safe; concurrent modifications should be
 /// synchronized externally if used across threads.</remarks>
-public class ErrorBuilder
+public sealed class ErrorBuilder
 {
     private string _code = string.Empty;
     private string _message = string.Empty;
