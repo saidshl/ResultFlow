@@ -1,4 +1,4 @@
-# EasyResult
+# ResultFlow
 
 A simple, lightweight, and powerful implementation of the **Result Pattern** for C# that provides elegant error handling and success result management. Designed for building robust, maintainable applications with clear error flow control.
 
@@ -8,13 +8,13 @@ A simple, lightweight, and powerful implementation of the **Result Pattern** for
 
 | Package | Description | Documentation |
 |---------|-------------|-----------------|
-| **Shl.EasyResult** | Core Result pattern library with zero dependencies | ?? [This Document](#EasyResult) |
-| **Shl.EasyResult.AspNetCore** | ASP.NET Core integration with automatic HTTP status code mapping | ?? [View Documentation](./source/EasyResult.AspNetCore/README.md) |
-| **Shl.EasyResult.FluentValidation** | FluentValidation seamless integration for validation results | ?? [View Documentation](./source/EasyResult.FluentValidation/README.md) |
+| **Shl.ResultFlow** | Core Result pattern library with zero dependencies | ?? [This Document](#ResultFlow) |
+| **Shl.ResultFlow.AspNetCore** | ASP.NET Core integration with automatic HTTP status code mapping | ?? [View Documentation](./source/ResultFlow.AspNetCore/README.md) |
+| **Shl.ResultFlow.FluentValidation** | FluentValidation seamless integration for validation results | ?? [View Documentation](./source/ResultFlow.FluentValidation/README.md) |
 
 **Future Extensions:**
-- ?? **Shl.EasyResult.Logging** - Structured logging integration (coming in v1.1)
-- ?? **Shl.EasyResult.Testing** - Unit testing assertions (coming in v1.1)
+- ?? **Shl.ResultFlow.Logging** - Structured logging integration (coming in v1.1)
+- ?? **Shl.ResultFlow.Testing** - Unit testing assertions (coming in v1.1)
 
 ---
 
@@ -35,13 +35,13 @@ A simple, lightweight, and powerful implementation of the **Result Pattern** for
 Install the NuGet package:
 
 ```bash
-dotnet add package Shl.EasyResult
+dotnet add package Shl.ResultFlow
 ```
 
 Or via Package Manager:
 
 ```powershell
-Install-Package Shl.EasyResult
+Install-Package Shl.ResultFlow
 ```
 
 ## ?? Quick Start
@@ -49,8 +49,8 @@ Install-Package Shl.EasyResult
 ### Basic Usage
 
 ```csharp
-using EasyResult.Results;
-using EasyResult.Errors;
+using ResultFlow.Results;
+using ResultFlow.Errors;
 
 // Success case
 var userResult = Result<User>.Success(new User { Id = 1, Name = "John Doe" });
@@ -116,7 +116,7 @@ deleteResult.Match(
 
 ### Error Handling
 
-EasyResult provides multiple ways to create and handle errors:
+ResultFlow provides multiple ways to create and handle errors:
 
 #### **1. PredefinedErrors - Quick Factory Methods**
 
@@ -303,7 +303,7 @@ var user = userResult.GetValueOrThrow(error =>
 
 ## ?? Error Types
 
-EasyResult includes comprehensive HTTP error types with factory methods:
+ResultFlow includes comprehensive HTTP error types with factory methods:
 
 | Error Type | HTTP Code | Factory Methods | Use Case |
 |-----------|-----------|-----------------|----------|
@@ -647,13 +647,13 @@ static ErrorBuilder Empty()
 
 ## ?? Contributing
 
-Contributions are welcome! Please feel free to submit issues or pull requests on [GitHub](https://github.com/said1993/EasyResult).
+Contributions are welcome! Please feel free to submit issues or pull requests on [GitHub](https://github.com/said1993/ResultFlow).
 
 ### Development Setup
 
 ```bash
-git clone https://github.com/said1993/EasyResult.git
-cd EasyResult
+git clone https://github.com/said1993/ResultFlow.git
+cd ResultFlow
 dotnet build
 dotnet test
 ```
@@ -661,9 +661,9 @@ dotnet test
 ## ?? Support
 
 For questions, issues, or suggestions:
-- ?? Create an [Issue](https://github.com/said1993/EasyResult/issues)
-- ?? Start a [Discussion](https://github.com/said1993/EasyResult/discussions)
-- ?? Visit [Repository](https://github.com/said1993/EasyResult)
+- ?? Create an [Issue](https://github.com/said1993/ResultFlow/issues)
+- ?? Start a [Discussion](https://github.com/said1993/ResultFlow/discussions)
+- ?? Visit [Repository](https://github.com/said1993/ResultFlow)
 
 ---
 
