@@ -445,10 +445,6 @@ dotnet build
 dotnet test
 ```
 
-## ?? License
-
-MIT - See the [LICENSE](../../LICENSE) file for details.
-
 ## ?? Support
 
 Need help?
