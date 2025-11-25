@@ -1,21 +1,21 @@
-# ResultFlow.AspNetCore
+﻿# ResultFlow.AspNetCore
 
 ASP.NET Core integration for [ResultFlow](https://github.com/said1993/ResultFlow).
 
 This package provides extension methods to seamlessly convert `Result<TValue>` and `Result` objects into ASP.NET Core `IActionResult` responses with automatic HTTP status code mapping.
 
-## ?? Installation
+## 📦 Installation
 
 Install the NuGet package:
 
 ```bash
-dotnet add package ResultFlow.AspNetCore --version 1.0.1-beta
+dotnet add package ResultFlow.AspNetCore
 ```
 
 Or via Package Manager:
 
 ```powershell
-Install-Package ResultFlow.AspNetCore -Version 1.0.1-beta
+Install-Package ResultFlow.AspNetCore
 ```
 
 ## ?? Quick Start
@@ -424,9 +424,9 @@ public class ProductsController : ControllerBase
 }
 ```
 
-## ?? Dependencies
+## 📚 Dependencies
 
-- [Shl.ResultFlow](https://www.nuget.org/packages/Shl.ResultFlow/) - Core Result pattern library
+- [ResultFlow](https://www.nuget.org/packages/ResultFlow/) - Core Result pattern library
 - Microsoft.AspNetCore.Mvc.Core - ASP.NET Core MVC framework
 
 ## ?? Contributing
@@ -452,11 +452,11 @@ Need help?
 - ?? Start a [Discussion](https://github.com/said1993/ResultFlow/discussions)
 - ?? Visit the [Repository](https://github.com/said1993/ResultFlow)
 
-## ?? Related Packages
+## 🔗 Related Packages
 
-- [Shl.ResultFlow](https://www.nuget.org/packages/Shl.ResultFlow/) - Core library
-- Shl.ResultFlow.FluentValidation - FluentValidation integration (coming soon)
-- Shl.ResultFlow.Logging - Structured logging integration (coming soon)
+- [ResultFlow](https://www.nuget.org/packages/ResultFlow/) - Core library
+- ResultFlow.FluentValidation - FluentValidation integration 
+- ResultFlow.Logging - Structured logging integration 
 
 ---
 

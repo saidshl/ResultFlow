@@ -8,13 +8,13 @@ A simple, lightweight, and powerful implementation of the **Result Pattern** for
 
 | Package | Description | Documentation |
 |---------|-------------|-----------------|
-| **Shl.ResultFlow** | Core Result pattern library with zero dependencies | 📖 [This Document](#ResultFlow) |
-| **Shl.ResultFlow.AspNetCore** | ASP.NET Core integration with automatic HTTP status code mapping | 📖 [View Documentation](./source/ResultFlow.AspNetCore/README.md) |
-| **Shl.ResultFlow.FluentValidation** | FluentValidation seamless integration for validation results | 📖 [View Documentation](./source/ResultFlow.FluentValidation/README.md) |
+| **ResultFlow** | Core Result pattern library with zero dependencies | 📖 [This Document](#ResultFlow) |
+| **ResultFlow.AspNetCore** | ASP.NET Core integration with automatic HTTP status code mapping | 📖 [View Documentation](./source/ResultFlow.AspNetCore/README.md) |
+| **ResultFlow.FluentValidation** | FluentValidation seamless integration for validation results | 📖 [View Documentation](./source/ResultFlow.FluentValidation/README.md) |
 
 **Future Extensions:**
-- 🔮 **Shl.ResultFlow.Logging** - Structured logging integration (coming in v1.1)
-- 🔮 **Shl.ResultFlow.Testing** - Unit testing assertions (coming in v1.1)
+- 🔮 **ResultFlow.Logging** - Structured logging integration (coming in v1.1)
+- 🔮 **ResultFlow.Testing** - Unit testing assertions (coming in v1.1)
 
 ---
 
@@ -35,13 +35,13 @@ A simple, lightweight, and powerful implementation of the **Result Pattern** for
 Install the NuGet package:
 
 ```bash
-dotnet add package Shl.ResultFlow
+dotnet add package ResultFlow
 ```
 
 Or via Package Manager:
 
 ```powershell
-Install-Package Shl.ResultFlow
+Install-Package ResultFlow
 ```
 
 ## 🚀 Quick Start

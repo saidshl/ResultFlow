@@ -499,7 +499,7 @@ public class ProductsController : ControllerBase
 
 ## 🔗 Integration with ASP.NET Core
 
-When combined with `Shl.ResultFlow.AspNetCore`, validation errors automatically map to HTTP 422 responses:
+When combined with `ResultFlow.AspNetCore`, validation errors automatically map to HTTP 422 responses:
 
 ```csharp
 [HttpPost]
@@ -616,9 +616,9 @@ Need help?
 
 ## 🔗 Related Packages
 
-- [Shl.ResultFlow](https://www.nuget.org/packages/Shl.ResultFlow/) - Core library
-- [Shl.ResultFlow.AspNetCore](https://www.nuget.org/packages/Shl.ResultFlow.AspNetCore/) - ASP.NET Core extensions
-- Shl.ResultFlow.Logging - Structured logging integration (coming soon)
+- [ResultFlow](https://www.nuget.org/packages/ResultFlow/) - Core library
+- [ResultFlow.AspNetCore](https://www.nuget.org/packages/ResultFlow.AspNetCore/) - ASP.NET Core extensions
+- ResultFlow.Logging - Structured logging integration (coming soon)
 
 ## 📊 Workflow Example
 
