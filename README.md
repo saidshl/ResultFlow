@@ -1,36 +1,36 @@
-# ResultFlow
+﻿# ResultFlow
 
 A simple, lightweight, and powerful implementation of the **Result Pattern** for C# that provides elegant error handling and success result management. Designed for building robust, maintainable applications with clear error flow control.
 
-## ?? Documentation Navigation
+## 📚 Documentation Navigation
 
 ### Core Packages
 
 | Package | Description | Documentation |
 |---------|-------------|-----------------|
-| **Shl.ResultFlow** | Core Result pattern library with zero dependencies | ?? [This Document](#ResultFlow) |
-| **Shl.ResultFlow.AspNetCore** | ASP.NET Core integration with automatic HTTP status code mapping | ?? [View Documentation](./source/ResultFlow.AspNetCore/README.md) |
-| **Shl.ResultFlow.FluentValidation** | FluentValidation seamless integration for validation results | ?? [View Documentation](./source/ResultFlow.FluentValidation/README.md) |
+| **Shl.ResultFlow** | Core Result pattern library with zero dependencies | 📖 [This Document](#ResultFlow) |
+| **Shl.ResultFlow.AspNetCore** | ASP.NET Core integration with automatic HTTP status code mapping | 📖 [View Documentation](./source/ResultFlow.AspNetCore/README.md) |
+| **Shl.ResultFlow.FluentValidation** | FluentValidation seamless integration for validation results | 📖 [View Documentation](./source/ResultFlow.FluentValidation/README.md) |
 
 **Future Extensions:**
-- ?? **Shl.ResultFlow.Logging** - Structured logging integration (coming in v1.1)
-- ?? **Shl.ResultFlow.Testing** - Unit testing assertions (coming in v1.1)
+- 🔮 **Shl.ResultFlow.Logging** - Structured logging integration (coming in v1.1)
+- 🔮 **Shl.ResultFlow.Testing** - Unit testing assertions (coming in v1.1)
 
 ---
 
-## ? Features
+## ✨ Features
 
-- ?? **Type-Safe Result Pattern** - Strongly-typed success and failure handling without exceptions for flow control
-- ??? **Immutable Design** - `readonly struct` implementation for thread-safe, memory-efficient operations
-- ?? **Functional API** - Comprehensive functional programming support with `Map`, `Bind`, `Filter`, `Match`, and `Tap`
-- ?? **Pattern Matching** - Full C# pattern matching support for elegant control flow
-- ? **Non-Generic Result** - Support for void operations that don't return values
-- ??? **Flexible Error Handling** - Rich error metadata, tracing, and exception wrapping for debugging
-- ?? **Enterprise-Ready** - Optimized for ASP.NET Core with seamless ActionResult conversion
-- ?? **Zero Dependencies** - Core library has no external dependencies
-- ?? **MIT Licensed** - Free for personal and commercial use
+- ✅ **Type-Safe Result Pattern** - Strongly-typed success and failure handling without exceptions for flow control
+- ✅ **Immutable Design** - `readonly struct` implementation for thread-safe, memory-efficient operations
+- ✅ **Functional API** - Comprehensive functional programming support with `Map`, `Bind`, `Filter`, `Match`, and `Tap`
+- ✅ **Pattern Matching** - Full C# pattern matching support for elegant control flow
+- ✅ **Non-Generic Result** - Support for void operations that don't return values
+- ✅ **Flexible Error Handling** - Rich error metadata, tracing, and exception wrapping for debugging
+- ✅ **Enterprise-Ready** - Optimized for ASP.NET Core with seamless ActionResult conversion
+- ✅ **Zero Dependencies** - Core library has no external dependencies
+- ✅ **MIT Licensed** - Free for personal and commercial use
 
-## ?? Installation
+## 📦 Installation
 
 Install the NuGet package:
 
@@ -44,7 +44,7 @@ Or via Package Manager:
 Install-Package Shl.ResultFlow
 ```
 
-## ?? Quick Start
+## 🚀 Quick Start
 
 ### Basic Usage
 
@@ -112,7 +112,7 @@ deleteResult.Match(
 );
 ```
 
-## ?? Core Concepts
+## 📖 Core Concepts
 
 ### Error Handling
 
@@ -339,7 +339,7 @@ var user = userResult.GetValueOrThrow(error =>
 );
 ```
 
-## ?? Error Types
+## 🎯 Error Types
 
 ResultFlow includes comprehensive HTTP error types with factory methods:
 
@@ -380,7 +380,7 @@ var error = ErrorBuilder
     .Build();
 ```
 
-## ?? Real-World Examples
+## 💡 Real-World Examples
 
 ### Example 1: User Service with Validation
 
@@ -589,7 +589,7 @@ private Result<User> ValidateUserRequest(UserRequest request)
 }
 ```
 
-## ?? API Reference
+## 📚 API Reference
 
 ### Result<TValue>
 
@@ -700,7 +700,7 @@ Task<Result<T>> TapErrorAsync<T>(this Task<Result<T>>, Func<Error, Task>)
 Task<TResult> MatchAsync<T, TResult>(this Task<Result<T>>, Func<T, Task<TResult>>, Func<Error, Task<TResult>>)
 ```
 
-## ?? Contributing
+## 🤝 Contributing
 
 Contributions are welcome! Please feel free to submit issues or pull requests on [GitHub](https://github.com/said1993/ResultFlow).
 
@@ -713,15 +713,15 @@ dotnet build
 dotnet test
 ```
 
-## ?? Support
+## 💬 Support
 
 For questions, issues, or suggestions:
-- ?? Create an [Issue](https://github.com/said1993/ResultFlow/issues)
-- ?? Start a [Discussion](https://github.com/said1993/ResultFlow/discussions)
-- ?? Visit [Repository](https://github.com/said1993/ResultFlow)
+- 🐛 Create an [Issue](https://github.com/said1993/ResultFlow/issues)
+- 💡 Start a [Discussion](https://github.com/said1993/ResultFlow/discussions)
+- 📦 Visit [Repository](https://github.com/said1993/ResultFlow)
 
 ---
 
-**Made with ?? by [said1993](https://github.com/said1993)**
+**Made with ❤️ by [said1993](https://github.com/said1993)**
 
 Last updated: 2025-11-23 10:13:05 UTC
