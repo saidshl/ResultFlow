@@ -1,4 +1,4 @@
-# ?? Getting Started with ResultFlow Samples
+﻿# 🎯 Getting Started with ResultFlow Samples
 
 ## What You'll Learn
 
@@ -12,10 +12,10 @@ These samples demonstrate how to use ResultFlow in real-world scenarios, from ba
 
 ## Sample Projects Overview
 
-### 1?? BasicUsage - Your First Steps
-**?? Location:** `samples/ResultFlow.Samples.BasicUsage/`  
-**?? Time:** 15-20 minutes  
-**?? Level:** Beginner
+### 1️⃣ BasicUsage - Your First Steps
+**📁 Location:** `samples/ResultFlow.Samples.BasicUsage/`  
+**⏱️ Time:** 15-20 minutes  
+**🎓 Level:** Beginner
 
 Perfect for first-time users. Learn:
 - Creating `Result<T>` for success and failure
@@ -32,14 +32,14 @@ dotnet run
 
 ---
 
-### 2?? WebApi - Production-Ready REST API
-**?? Location:** `samples/ResultFlow.Samples.WebApi/`  
-**?? Time:** 30-45 minutes  
-**?? Level:** Intermediate
+### 2️⃣ WebApi - Production-Ready REST API
+**📁 Location:** `samples/ResultFlow.Samples.WebApi/`  
+**⏱️ Time:** 30-45 minutes  
+**🎓 Level:** Intermediate
 
 See ResultFlow in a real ASP.NET Core Web API:
 - Automatic HTTP status code mapping
-- Clean architecture (Controllers ? Services ? Repositories)
+- Clean architecture (Controllers → Services → Repositories)
 - Railway-oriented programming
 - Swagger/OpenAPI documentation
 - Error handling best practices
@@ -53,10 +53,10 @@ dotnet run
 
 ---
 
-### 3?? FluentValidation - Seamless Validation
-**?? Location:** `samples/ResultFlow.Samples.FluentValidation/`  
-**?? Time:** 20-30 minutes  
-**?? Level:** Intermediate
+### 3️⃣ FluentValidation - Seamless Validation
+**📁 Location:** `samples/ResultFlow.Samples.FluentValidation/`  
+**⏱️ Time:** 20-30 minutes  
+**🎓 Level:** Intermediate
 
 Integrate FluentValidation with ResultFlow:
 - Automatic validation result conversion
@@ -72,7 +72,7 @@ dotnet run
 
 ---
 
-## ?? Recommended Learning Path
+## 🚦 Recommended Learning Path
 
 ```mermaid
 graph LR
@@ -94,9 +94,9 @@ graph LR
 
 ---
 
-## ?? Key Concepts Across All Samples
+## 🎨 Key Concepts Across All Samples
 
-### ? Result Pattern Basics
+### ✅ Result Pattern Basics
 ```csharp
 // Success
 var success = Result<int>.Ok(42);
@@ -111,7 +111,7 @@ result.Match(
 );
 ```
 
-### ? Railway-Oriented Programming
+### ✅ Railway-Oriented Programming
 ```csharp
 var result = GetUser(id)
     .Tap(user => Log(user))        // Side effect
@@ -120,7 +120,7 @@ var result = GetUser(id)
     .Map(user => user.Name);       // Transform value
 ```
 
-### ? Error Types
+### ✅ Error Types
 ```csharp
 NotFoundError.ForResource("User", "123")
 ValidationError.ForField("Email", "Invalid format")
@@ -128,7 +128,7 @@ BadRequestError.ForInvalidParameter("age", "Must be positive", -5)
 ConflictError.ForDuplicateResource("User", "email@example.com")
 ```
 
-### ? Async Operations
+### ✅ Async Operations
 ```csharp
 await GetUserAsync(id)
     .MapAsync(async user => await ProcessAsync(user))
@@ -138,7 +138,7 @@ await GetUserAsync(id)
 
 ---
 
-## ?? Code Examples by Scenario
+## 🔍 Code Examples by Scenario
 
 ### Scenario 1: Simple Operation
 ```csharp
@@ -188,7 +188,7 @@ public async Task<IActionResult> Create([FromBody] CreateUserRequest request)
 
 ---
 
-## ?? Error Response Examples
+## 📊 Error Response Examples
 
 ### Success Response (200 OK)
 ```json
@@ -245,7 +245,7 @@ public async Task<IActionResult> Create([FromBody] CreateUserRequest request)
 
 ---
 
-## ??? Troubleshooting
+## 🛠️ Troubleshooting
 
 ### Issue: "Cannot find ResultFlow"
 **Solution:**
@@ -271,7 +271,7 @@ dotnet run
 
 ---
 
-## ?? Additional Resources
+## 📚 Additional Resources
 
 - **Main Documentation:** [README.md](../README.md)
 - **API Reference:** See XML documentation in source code
@@ -279,18 +279,18 @@ dotnet run
 
 ---
 
-## ?? Next Steps
+## 🎓 Next Steps
 
 After completing the samples:
 
-1. ? **Read the Source Code** - The library is well-documented
-2. ? **Try Your Own Project** - Apply ResultFlow to your code
-3. ? **Explore Advanced Patterns** - Nested results, custom errors
-4. ? **Share Feedback** - Help improve the library
+1. ✅ **Read the Source Code** - The library is well-documented
+2. ✅ **Try Your Own Project** - Apply ResultFlow to your code
+3. ✅ **Explore Advanced Patterns** - Nested results, custom errors
+4. ✅ **Share Feedback** - Help improve the library
 
 ---
 
-## ?? Pro Tips
+## 💡 Pro Tips
 
 1. **Use Railway-Oriented Programming** - Chain operations for cleaner code
 2. **Leverage Pattern Matching** - Handle success/failure explicitly
@@ -300,7 +300,7 @@ After completing the samples:
 
 ---
 
-## ?? Contributing
+## 🤝 Contributing
 
 Found a way to improve these samples? We welcome contributions!
 
@@ -315,10 +315,10 @@ git push
 
 ---
 
-## ?? License
+## 📄 License
 
 MIT License - See [LICENSE](../LICENSE) for details
 
 ---
 
-**Happy Coding! ??**
+**Happy Coding! 🚀**

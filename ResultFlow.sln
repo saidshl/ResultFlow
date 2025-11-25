@@ -8,6 +8,10 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{7D0DABF4-C9B6-4658-8002-17D296E375D6}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "sample", "sample", "{4B519AF9-FA0E-4E26-902E-16978FDCD4AF}"
+	ProjectSection(SolutionItems) = preProject
+		samples\GETTING_STARTED.md = samples\GETTING_STARTED.md
+		samples\README.md = samples\README.md
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ResultFlow", "source\ResultFlow\ResultFlow.csproj", "{78ABC0DD-1A17-4831-A5B6-96B82B184D2C}"
 EndProject
