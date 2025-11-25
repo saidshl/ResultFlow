@@ -1,30 +1,50 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
+    <!-- Multi-target for maximum compatibility -->
+    <TargetFrameworks>net8.0;net9.0;net10.0</TargetFrameworks>
+    <LangVersion>12.0</LangVersion>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-	  <AssemblyVersion>1.0.0.0</AssemblyVersion>
-	  <FileVersion>1.0.0.0</FileVersion>
-	  <InformationalVersion>beta1</InformationalVersion>
-	  <Version>1.0.1-beta</Version>
-    <PackageTags>Result; Result Pattern; .NET; C#</PackageTags>
-    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+
+    <!-- Assembly versioning -->
+    <AssemblyVersion>1.0.1.0</AssemblyVersion>
+    <FileVersion>1.0.1.0</FileVersion>
+    <InformationalVersion>1.0.1-beta</InformationalVersion>
+    <Version>1.0.1-beta</Version>
+
+    <!-- NuGet package metadata -->
+    <PackageId>Shl.SimpleResult</PackageId>
+    <Title>SimpleResult - Result Pattern for .NET</Title>
     <Authors>Said Souhayel</Authors>
-	  <PackageId>Shl.SimpleResult</PackageId>
-    <Description>A simple and lightweight implementation of the Result pattern for handling success and failure cases in C#. 
-Ideal for improving error handling and making your code more expressive and robust.
-</Description>
+    <Description>
+      A lightweight, high-performance implementation of the Result pattern for .NET.
+      Provides strongly-typed success/failure handling with functional programming support.
+      Includes built-in error types, async extensions, and comprehensive documentation.
+    </Description>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <Title>Simple Result</Title>
+    <PackageTags>Result;Result-Pattern;Railway-Oriented-Programming;Functional-Programming;Error-Handling;Monads;CSharp;dotnet;net8;net9;net10</PackageTags>
+    <PackageProjectUrl>https://github.com/said1993/SimpleResult</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/said1993/SimpleResult</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
     <PackageReadmeFile>README.md</PackageReadmeFile>
+    
+    <Deterministic>true</Deterministic>
+    <IsTrimmable>true</IsTrimmable>
+    <IsAotCompatible>true</IsAotCompatible>
+    <EnableTrimAnalyzer>true</EnableTrimAnalyzer>
   </PropertyGroup>
 
+
+	<ItemGroup>
+		<None Include="..\..\README.md">
+			<Pack>True</Pack>
+			<PackagePath>\</PackagePath>
+		</None>
+	</ItemGroup>
+	
   <ItemGroup>
-    <None Include="..\..\README.md">
-      <Pack>True</Pack>
-      <PackagePath>\</PackagePath>
-    </None>
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="8.0.0" PrivateAssets="All" />
   </ItemGroup>
 
 </Project>

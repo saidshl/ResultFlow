@@ -57,14 +57,14 @@ public readonly struct Result<TValue> : IEquatable<Result<TValue>>
     /// </summary>
     /// <param name="value">The success value.</param>
     /// <returns>A successful Result instance.</returns>
-    public static Result<TValue> Success(TValue value) => new(value);
+    public static Result<TValue> Ok(TValue value) => new(value);
 
     /// <summary>
     /// Creates a failed result with the given error.
     /// </summary>
     /// <param name="error">The error that occurred.</param>
     /// <returns>A failed Result instance.</returns>
-    public static Result<TValue> Failure(Error error) => new(error);
+    public static Result<TValue> Failed(Error error) => new(error);
 
     /// <summary>
     /// Performs a pattern match on the result and returns a value.
@@ -96,7 +96,7 @@ public readonly struct Result<TValue> : IEquatable<Result<TValue>>
     /// <param name="map">Function to transform the success value.</param>
     /// <returns>A new Result with the transformed value, or the error if failed.</returns>
     public Result<TResult> Map<TResult>(Func<TValue?, TResult> map)
-        => IsOk ? Result<TResult>.Success(map(_value)) : Result<TResult>.Failure(_error!);
+        => IsOk ? Result<TResult>.Ok(map(_value)) : Result<TResult>.Failed(_error!);
 
     /// <summary>
     /// Chains operations on the result. Flattens nested results.
@@ -105,7 +105,7 @@ public readonly struct Result<TValue> : IEquatable<Result<TValue>>
     /// <param name="bind">Function that returns a new Result.</param>
     /// <returns>A new Result from the bind function, or the error if failed.</returns>
     public Result<TResult> Bind<TResult>(Func<TValue?, Result<TResult>> bind)
-        => IsOk ? bind(_value) : Result<TResult>.Failure(_error!);
+        => IsOk ? bind(_value) : Result<TResult>.Failed(_error!);
 
     /// <summary>
     /// Executes a side effect function and returns the original result unchanged.
@@ -173,7 +173,7 @@ public readonly struct Result<TValue> : IEquatable<Result<TValue>>
     {
         if (HasError)
             return this;
-        return predicate(_value) ? this : Failure(error);
+        return predicate(_value) ? this : Failed(error);
     }
 
     /// <summary>
@@ -183,7 +183,7 @@ public readonly struct Result<TValue> : IEquatable<Result<TValue>>
     /// <param name="other">The other result to chain.</param>
     /// <returns>The first failure or the second result.</returns>
     public Result<TResult> Then<TResult>(Result<TResult> other) =>
-        HasError ? Result<TResult>.Failure(_error!) : other;
+        HasError ? Result<TResult>.Failed(_error!) : other;
 
     /// <summary>
     /// Chains another result that depends on this result's value.
@@ -210,6 +210,7 @@ public readonly struct Result<TValue> : IEquatable<Result<TValue>>
     /// <returns>True if both results are equal, false otherwise.</returns>
     public bool Equals(Result<TValue> other)
     {
+
         if (IsOk != other.IsOk)
             return false;
 
@@ -240,13 +241,13 @@ public readonly struct Result<TValue> : IEquatable<Result<TValue>>
     /// Implicit conversion from a success value to a Result.
     /// </summary>
     /// <param name="value">The success value.</param>
-    public static implicit operator Result<TValue>(TValue value) => Success(value);
+    public static implicit operator Result<TValue>(TValue value) => Ok(value);
 
     /// <summary>
     /// Implicit conversion from an Error to a failed Result.
     /// </summary>
     /// <param name="error">The error.</param>
-    public static implicit operator Result<TValue>(Error error) => Failure(error);
+    public static implicit operator Result<TValue>(Error error) => Failed(error);
 
     /// <summary>
     /// Equality operator for Result instances.

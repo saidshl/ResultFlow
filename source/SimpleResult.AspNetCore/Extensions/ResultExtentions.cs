@@ -17,12 +17,6 @@ public static class AspNetMvcExtentions
     /// <typeparam name="TValue">The type of the success value.</typeparam>
     /// <param name="result">The result to convert.</param>
     /// <returns>An IActionResult representing the result state.</returns>
-    /// <example>
-    /// <code>
-    /// var userResult = await _userService.GetUserByIdAsync(id);
-    /// return userResult.ToActionResult();
-    /// </code>
-    /// </example>
     public static IActionResult ToActionResult<TValue>(this Result<TValue> result)
     {
         return result.IsOk
@@ -31,22 +25,41 @@ public static class AspNetMvcExtentions
     }
 
     /// <summary>
+    /// Converts a Task&lt;Result&lt;TValue&gt;&gt; to an IActionResult.
+    /// Awaits the task and returns 200 OK with the value on success, or appropriate HTTP status code based on error type on failure.
+    /// </summary>
+    /// <typeparam name="TValue">The type of the success value.</typeparam>
+    /// <param name="resultTask">The task containing the result to convert.</param>
+    /// <returns>A task that represents the asynchronous operation and contains an IActionResult representing the result state.</returns>
+    public static async Task<IActionResult> ToActionResultAsync<TValue>(this Task<Result<TValue>> resultTask)
+    {
+        var result = await resultTask;
+        return result.ToActionResult();
+    }
+
+    /// <summary>
     /// Converts a Result to an IActionResult (for void operations).
     /// Returns 200 OK on success, or appropriate HTTP status code based on error type on failure.
     /// </summary>
     /// <param name="result">The result to convert.</param>
     /// <returns>An IActionResult representing the result state.</returns>
-    /// <example>
-    /// <code>
-    /// var deleteResult = await _userService.DeleteUserAsync(id);
-    /// return deleteResult.ToActionResult();
-    /// </code>
-    /// </example>
-    public static IActionResult ToActionResult(this Result result)
+    public static IActionResult ToActionResult(this VoidResult result)
     {
         return result.IsOk
             ? (IActionResult)new OkResult()
             : ErrorToActionResult(result.Error!);
+    }
+
+    /// <summary>
+    /// Converts a Task&lt;VoidResult&gt; to an IActionResult (for async void operations).
+    /// Awaits the task and returns 200 OK on success, or appropriate HTTP status code based on error type on failure.
+    /// </summary>
+    /// <param name="resultTask">The task containing the result to convert.</param>
+    /// <returns>A task that represents the asynchronous operation and contains an IActionResult representing the result state.</returns>
+    public static async Task<IActionResult> ToActionResultAsync(this Task<VoidResult> resultTask)
+    {
+        var result = await resultTask;
+        return result.ToActionResult();
     }
 
     /// <summary>
@@ -144,7 +157,6 @@ public static class AspNetMvcExtentions
                     StatusCode = 500
                 },
 
-            // 400 - Default Bad Request for unknown errors
             _ =>
                 new BadRequestObjectResult(new
                 {

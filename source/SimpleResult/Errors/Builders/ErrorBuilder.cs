@@ -1,4 +1,6 @@
-﻿namespace SimpleResult.Errors.Builders;
+﻿using System.Diagnostics.CodeAnalysis;
+
+namespace SimpleResult.Errors.Builders;
 
 /// <summary>
 /// Provides a fluent builder for constructing Error instances with customizable code, message, details, metadata, and
@@ -147,9 +149,11 @@ public class ErrorBuilder
     /// <summary>
     /// Builds and returns a typed Error instance (e.g., ValidationError, NotFoundError).
     /// </summary>
-    /// <typeparam name="TError">The error type to create.</typeparam>
+    /// <typeparam name="TError">The error type to create. Must have a public constructor with parameters (string, string, string?, Dictionary&lt;string, object&gt;?, Exception?).</typeparam>
     /// <returns>A new error instance of the specified type.</returns>
-    public TError Build<TError>() where TError : Error, new()
+    /// <exception cref="InvalidOperationException">Thrown if required fields are missing or if the type cannot be instantiated.</exception>
+    public TError Build<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TError>()
+        where TError : Error
     {
         ValidateRequiredFields();
         return (TError)Activator.CreateInstance(

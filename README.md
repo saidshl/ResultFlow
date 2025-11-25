@@ -15,7 +15,6 @@ A simple, lightweight, and powerful implementation of the **Result Pattern** for
 **Future Extensions:**
 - 🔄 **Shl.SimpleResult.Logging** - Structured logging integration (coming in v1.1)
 - 🔄 **Shl.SimpleResult.Testing** - Unit testing assertions (coming in v1.1)
-- 🔄 **Shl.SimpleResult.Mapping** - AutoMapper integration (coming in v1.2)
 
 ---
 
@@ -36,13 +35,13 @@ A simple, lightweight, and powerful implementation of the **Result Pattern** for
 Install the NuGet package:
 
 ```bash
-dotnet add package Shl.SimpleResult --version 1.0.1-beta
+dotnet add package Shl.SimpleResult
 ```
 
 Or via Package Manager:
 
 ```powershell
-Install-Package Shl.SimpleResult -Version 1.0.1-beta
+Install-Package Shl.SimpleResult
 ```
 
 ## 🚀 Quick Start

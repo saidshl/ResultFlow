@@ -3,11 +3,13 @@ using FluentValidation.Results;
 using SimpleResult.Errors;
 using SimpleResult.Results;
 using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace SimpleResult.FluentValidation.Extensions;
 
 /// <summary>
-/// Extension methods for converting FluentValidation results to SimpleResult.Results.
+/// Extension methods for integrating FluentValidation with SimpleResult.
+/// Provides seamless conversion between FluentValidation results and the Result pattern.
 /// </summary>
 public static class ResultExtensions
 {
@@ -21,7 +23,7 @@ public static class ResultExtensions
     public static Result<T> ToResult<T>(this ValidationResult validationResult, T? value = default)
     {
         if (validationResult.IsValid)
-            return Result<T>.Success(value!);
+            return Result<T>.Ok(value!);
 
         var errors = validationResult.Errors
             .GroupBy(x => x.PropertyName)
@@ -29,10 +31,10 @@ public static class ResultExtensions
                 x => x.Key,
                 x => x.Select(e => e.ErrorMessage).ToList());
 
-        return Result<T>.Failure(
+        return Result<T>.Failed(
             ValidationError.WithDefaults(
                 "Validation failed",
-                JsonSerializer.Serialize(errors),
+                JsonSerializer.Serialize(errors, ValidationErrorJsonContext.Default.DictionaryStringListString),
                 new Dictionary<string, object> { { "errors", errors } }
             )
         );
@@ -50,4 +52,12 @@ public static class ResultExtensions
         var result = await validator.ValidateAsync(instance);
         return result.ToResult(instance);
     }
+}
+
+/// <summary>
+/// JSON serialization context for validation errors to support trimming and Native AOT.
+/// </summary>
+[JsonSerializable(typeof(Dictionary<string, List<string>>))]
+internal partial class ValidationErrorJsonContext : JsonSerializerContext
+{
 }
