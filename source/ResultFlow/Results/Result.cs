@@ -28,6 +28,11 @@ public readonly struct Result<TValue> : IEquatable<Result<TValue>>
     public bool IsOk { get; }
 
     /// <summary>
+    /// Gets a value indicating whether the current instance contains a non-null value.
+    /// </summary>
+    public bool HasValue => _value is not null;
+
+    /// <summary>
     /// Gets a value indicating whether the operation failed.
     /// </summary>
     public bool HasError => !IsOk;
@@ -41,6 +46,7 @@ public readonly struct Result<TValue> : IEquatable<Result<TValue>>
         _error = null;
         IsOk = true;
     }
+
 
     /// <summary>
     /// Private constructor for failure result.
