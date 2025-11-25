@@ -110,4 +110,3 @@ public async Task<Result<User>> UpdateUserAsync(int id, UpdateUserRequest reques
             return await _repository.UpdateAsync(existingUser);
         });
 }
-```

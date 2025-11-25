@@ -69,7 +69,7 @@ return await Task.FromResult(GetUser(id))
             return validationResult.ToResult<User>();
         }
 
-        // Update user
+        // Update user 
         return Result<User>.Ok(updatedUser);
     });
 ```
@@ -123,4 +123,3 @@ Details: {"Name":["Name must be at least 2 characters"],"Age":["Invalid age"],"W
 ? Expected conflict: A User with the value 'alice@example.com' already exists.
 ? Validation failed: Validation failed
   Details: {"Name":["Name must be at least 2 characters"],"Email":["Invalid email format"],"Age":["Must be at least 18 years old"]}
-```
