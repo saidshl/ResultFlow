@@ -13,8 +13,8 @@ A simple, lightweight, and powerful implementation of the **Result Pattern** for
 | **ResultFlow.FluentValidation** | FluentValidation seamless integration for validation results | 📖 [View Documentation](./source/ResultFlow.FluentValidation/README.md) |
 
 **Future Extensions:**
-- 🔮 **ResultFlow.Logging** - Structured logging integration (coming in v1.1)
-- 🔮 **ResultFlow.Testing** - Unit testing assertions (coming in v1.1)
+- 🔮 **ResultFlow.Logging** - Structured logging integration (coming in v3.0)
+- 🔮 **ResultFlow.Testing** - Unit testing assertions (coming in v3.0)
 
 ---
 
