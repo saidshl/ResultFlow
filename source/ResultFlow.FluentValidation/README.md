@@ -78,8 +78,8 @@ public static Result<T> ToResult<T>(
 ```
 
 Converts a FluentValidation `ValidationResult` to a `Result<T>`:
-- **On Success** ✅ Returns `Result<T>.Success(value)`
-- **On Failure** ❌ Returns `Result<T>.Failure(error)` with validation errors grouped by property
+- **On Success** ✅ Returns `Result<T>.Ok(value)`
+- **On Failure** ❌ Returns `Result<T>.Failed(error)` with validation errors grouped by property
 
 ### 2. ValidateAsync<T> - Validate and Convert
 
@@ -182,11 +182,11 @@ public class UserService : IUserService
         try
         {
             var createdUser = await _repository.AddAsync(user);
-            return Result<User>.Success(createdUser);
+            return Result<User>.Ok(createdUser);
         }
         catch (Exception ex)
         {
-            return Result<User>.Failure(
+            return Result<User>.Failed(
                 InternalServerError.FromException(ex)
             );
         }
@@ -257,7 +257,7 @@ public class OrderService
         {
             var stock = await _repository.GetStockAsync(item.ProductId);
             if (stock < item.Quantity)
-                return Result<Order>.Failure(
+                return Result<Order>.Failed(
                     ValidationError.WithDefaults(
                         "Insufficient inventory",
                         details: $"Product {item.ProductId} has only {stock} units available"
@@ -265,13 +265,13 @@ public class OrderService
                 );
         }
         
-        return Result<Order>.Success(order);
+        return Result<Order>.Ok(order);
     }
 
     private async Task<Result<Order>> ValidatePricingAsync(Order order)
     {
         // Additional pricing validation
-        return Result<Order>.Success(order);
+        return Result<Order>.Ok(order);
     }
 
     private async Task<Result<Order>> SaveOrderAsync(Order order)
@@ -279,11 +279,11 @@ public class OrderService
         try
         {
             var saved = await _repository.AddAsync(order);
-            return Result<Order>.Success(saved);
+            return Result<Order>.Ok(saved);
         }
         catch (Exception ex)
         {
-            return Result<Order>.Failure(
+            return Result<Order>.Failed(
                 InternalServerError.FromException(ex)
             );
         }
@@ -399,7 +399,7 @@ public class ProductService : IProductService
 
         var existingProduct = await _repository.GetByIdAsync(id);
         if (existingProduct == null)
-            return Result<Product>.Failure(
+            return Result<Product>.Failed(
                 NotFoundError.ByIdentifier("Product", id)
             );
 
@@ -418,12 +418,12 @@ public class ProductService : IProductService
         try
         {
             var savedProduct = await _repository.AddAsync(product);
-            return Result<Product>.Success(savedProduct);
+            return Result<Product>.Ok(savedProduct);
         }
         catch (Exception ex)
         {
             _logger.LogError(ex, "Database error while creating product");
-            return Result<Product>.Failure(
+            return Result<Product>.Failed(
                 InternalServerError.ForOperation("CreateProduct", ex)
             );
         }
@@ -434,12 +434,12 @@ public class ProductService : IProductService
         try
         {
             var updatedProduct = await _repository.UpdateAsync(product);
-            return Result<Product>.Success(updatedProduct);
+            return Result<Product>.Ok(updatedProduct);
         }
         catch (Exception ex)
         {
             _logger.LogError(ex, "Database error while updating product");
-            return Result<Product>.Failure(
+            return Result<Product>.Failed(
                 InternalServerError.ForOperation("UpdateProduct", ex)
             );
         }

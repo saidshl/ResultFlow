@@ -1,4 +1,4 @@
-﻿# ResultFlow
+# ResultFlow
 
 A simple, lightweight, and powerful implementation of the **Result Pattern** for C# that provides elegant error handling and success result management. Designed for building robust, maintainable applications with clear error flow control.
 
@@ -53,10 +53,10 @@ using ResultFlow.Results;
 using ResultFlow.Errors;
 
 // Success case
-var userResult = Result<User>.Success(new User { Id = 1, Name = "John Doe" });
+var userResult = Result<User>.Ok(new User { Id = 1, Name = "John Doe" });
 
 // Failure case  
-var errorResult = Result<User>.Failure(
+var errorResult = Result<User>.Failed(
     NotFoundError.WithDefaults("User not found")
 );
 
@@ -98,10 +98,10 @@ public Result DeleteUser(int id)
 {
     var user = _database.FindUser(id);
     if (user == null)
-        return Result.Failure(NotFoundError.WithDefaults("User not found"));
+        return Result.Failed(NotFoundError.WithDefaults("User not found"));
     
     _database.Delete(user);
-    return Result.Success();
+    return Result.Ok();
 }
 
 // Usage
@@ -129,7 +129,7 @@ var authError = PredefinedErrors.Unauthorized();
 var validationError = PredefinedErrors.ValidationFailed("Multiple validation errors");
 var serverError = PredefinedErrors.InternalError("Database connection failed");
 
-return Result<User>.Failure(notFoundError);
+return Result<User>.Failed(notFoundError);
 ```
 
 #### **2. Error Type Factory Methods - Specific Scenarios**
@@ -187,7 +187,7 @@ var error = ErrorBuilder
     .WithException(stripeException)
     .Build();
 
-return Result<PaymentResult>.Failure(error);
+return Result<PaymentResult>.Failed(error);
 ```
 
 ### Functional Operations
@@ -195,7 +195,7 @@ return Result<PaymentResult>.Failure(error);
 #### **Map - Transform Values**
 
 ```csharp
-var userIdResult = Result<int>.Success(42);
+var userIdResult = Result<int>.Ok(42);
 
 var userResult = userIdResult
     .Map(id => _userService.GetUserById(id))
@@ -212,14 +212,14 @@ var userResult = userIdResult
 public Result<User> GetUser(int id)
 {
     if (id <= 0)
-        return Result<User>.Failure(
+        return Result<User>.Failed(
             BadRequestError.ForInvalidParameter("id", "Must be positive")
         );
     
     var user = _database.FindUser(id);
     return user != null
-        ? Result<User>.Success(user)
-        : Result<User>.Failure(NotFoundError.ForResource("User", id.ToString()));
+        ? Result<User>.Ok(user)
+        : Result<User>.Failed(NotFoundError.ForResource("User", id.ToString()));
 }
 
 public Result<string> GetUserEmail(int id)
@@ -230,13 +230,13 @@ public Result<string> GetUserEmail(int id)
         .Map(user => user.Email);
 }
 
-// Result: Success("john@example.com") or any error from the chain
+// Result: Ok("john@example.com") or any error from the chain
 ```
 
 #### **Filter - Conditional Logic**
 
 ```csharp
-var ageResult = Result<int>.Success(25);
+var ageResult = Result<int>.Ok(25);
 
 var validAge = ageResult.Filter(
     age => age >= 18,
@@ -252,7 +252,7 @@ if (validAge.IsOk)
 #### **Tap - Side Effects**
 
 ```csharp
-var userResult = Result<User>.Success(new User { Id = 1, Name = "John" });
+var userResult = Result<User>.Ok(new User { Id = 1, Name = "John" });
 
 var result = userResult
     .Tap(user => Console.WriteLine($"Processing user: {user.Name}"))
@@ -395,7 +395,7 @@ public class UserService
         if (id <= 0)
         {
             _logger.LogWarning("Invalid user ID: {UserId}", id);
-            return Result<User>.Failure(
+            return Result<User>.Failed(
                 BadRequestError.ForInvalidParameter("id", "Must be positive", id)
             );
         }
@@ -404,31 +404,31 @@ public class UserService
         if (user == null)
         {
             _logger.LogWarning("User not found: {UserId}", id);
-            return Result<User>.Failure(
+            return Result<User>.Failed(
                 NotFoundError.ByIdentifier("User", id)
             );
         }
 
-        return Result<User>.Success(user);
+        return Result<User>.Ok(user);
     }
 
     public async Task<Result<User>> CreateUserAsync(CreateUserRequest request)
     {
         // Validate input
         if (string.IsNullOrWhiteSpace(request.Email))
-            return Result<User>.Failure(
+            return Result<User>.Failed(
                 BadRequestError.ForMissingField("Email")
             );
 
         if (!IsValidEmail(request.Email))
-            return Result<User>.Failure(
+            return Result<User>.Failed(
                 BadRequestError.ForInvalidParameter("Email", "Invalid format", request.Email)
             );
 
         // Check for duplicates
         var existing = await _repository.FindByEmailAsync(request.Email);
         if (existing != null)
-            return Result<User>.Failure(
+            return Result<User>.Failed(
                 ConflictError.ForDuplicateResource("Email", request.Email)
             );
 
@@ -445,12 +445,12 @@ public class UserService
             await _repository.AddAsync(user);
             
             _logger.LogInformation("User created: {UserId}", user.Id);
-            return Result<User>.Success(user);
+            return Result<User>.Ok(user);
         }
         catch (Exception ex)
         {
             _logger.LogError(ex, "Error creating user");
-            return Result<User>.Failure(
+            return Result<User>.Failed(
                 InternalServerError.FromException(ex, "Error creating user")
             );
         }
@@ -460,7 +460,7 @@ public class UserService
     {
         var user = await _repository.FindByIdAsync(id);
         if (user == null)
-            return Result.Failure(
+            return Result.Failed(
                 NotFoundError.ByIdentifier("User", id)
             );
 
@@ -468,12 +468,12 @@ public class UserService
         {
             await _repository.DeleteAsync(user);
             _logger.LogInformation("User deleted: {UserId}", id);
-            return Result.Success();
+            return Result.Ok();
         }
         catch (Exception ex)
         {
             _logger.LogError(ex, "Error deleting user: {UserId}", id);
-            return Result.Failure(
+            return Result.Failed(
                 InternalServerError.ForOperation("DeleteUser", ex)
             );
         }
@@ -504,18 +504,18 @@ private async Task<Result<Order>> GetOrderAsync(int id)
 {
     var order = await _repository.GetOrderAsync(id);
     return order != null
-        ? Result<Order>.Success(order)
-        : Result<Order>.Failure(NotFoundError.ForResource("Order", id.ToString()));
+        ? Result<Order>.Ok(order)
+        : Result<Order>.Failed(NotFoundError.ForResource("Order", id.ToString()));
 }
 
 private async Task<Result<Order>> ValidateOrderAsync(Order order)
 {
     if (order.Items.Count == 0)
-        return Result<Order>.Failure(
+        return Result<Order>.Failed(
             ValidationError.WithDefaults("Order must contain at least one item")
         );
 
-    return Result<Order>.Success(order);
+    return Result<Order>.Ok(order);
 }
 
 private async Task<Result<Order>> CheckInventoryAsync(Order order)
@@ -524,12 +524,12 @@ private async Task<Result<Order>> CheckInventoryAsync(Order order)
     {
         var stock = await _inventoryService.GetStockAsync(item.ProductId);
         if (stock < item.Quantity)
-            return Result<Order>.Failure(
+            return Result<Order>.Failed(
                 ConflictError.WithDefaults($"Insufficient stock for product {item.ProductId}")
             );
     }
 
-    return Result<Order>.Success(order);
+    return Result<Order>.Ok(order);
 }
 
 private async Task<Result<Order>> ProcessPaymentAsync(Order order)
@@ -537,11 +537,11 @@ private async Task<Result<Order>> ProcessPaymentAsync(Order order)
     try
     {
         await _paymentService.ChargeAsync(order.CustomerId, order.Total);
-        return Result<Order>.Success(order);
+        return Result<Order>.Ok(order);
     }
     catch (PaymentException ex)
     {
-        return Result<Order>.Failure(
+        return Result<Order>.Failed(
             InternalServerError.ForOperation("ProcessPayment", ex)
         );
     }
@@ -571,16 +571,16 @@ public Result<User> CreateUser(UserRequest request)
 private Result<User> ValidateUserRequest(UserRequest request)
 {
     if (string.IsNullOrWhiteSpace(request.Name))
-        return Result<User>.Failure(
+        return Result<User>.Failed(
             BadRequestError.ForMissingField("Name")
         );
 
     if (string.IsNullOrWhiteSpace(request.Email))
-        return Result<User>.Failure(
+        return Result<User>.Failed(
             BadRequestError.ForMissingField("Email")
         );
 
-    return Result<User>.Success(new User 
+    return Result<User>.Ok(new User 
     { 
         Name = request.Name, 
         Email = request.Email,
@@ -595,8 +595,8 @@ private Result<User> ValidateUserRequest(UserRequest request)
 
 ```csharp
 // Factory Methods
-Result<T> Success(T value)              // Create success result
-Result<T> Failure(Error error)          // Create failure result
+Result<T> Ok(T value)              // Create success result
+Result<T> Failed(Error error)          // Create failure result
 
 // Properties
 T? Value                                // Success value
@@ -633,8 +633,8 @@ override string ToString()
 
 ```csharp
 // Factory Methods
-Result Success()                        // Create success result
-Result Failure(Error error)             // Create failure result
+Result Ok()                        // Create success result
+Result Failed(Error error)             // Create failure result
 
 // Properties
 Error? Error                            // Error information
@@ -702,12 +702,12 @@ Task<TResult> MatchAsync<T, TResult>(this Task<Result<T>>, Func<T, Task<TResult>
 
 ## 🤝 Contributing
 
-Contributions are welcome! Please feel free to submit issues or pull requests on [GitHub](https://github.com/said1993/ResultFlow).
+Contributions are welcome! Please feel free to submit issues or pull requests on [GitHub](https://github.com/saidshl/ResultFlow).
 
 ### Development Setup
 
 ```bash
-git clone https://github.com/said1993/ResultFlow.git
+git clone https://github.com/saidshl/ResultFlow.git
 cd ResultFlow
 dotnet build
 dotnet test
@@ -716,12 +716,12 @@ dotnet test
 ## 💬 Support
 
 For questions, issues, or suggestions:
-- 🐛 Create an [Issue](https://github.com/said1993/ResultFlow/issues)
-- 💡 Start a [Discussion](https://github.com/said1993/ResultFlow/discussions)
-- 📦 Visit [Repository](https://github.com/said1993/ResultFlow)
+- 🐛 Create an [Issue](https://github.com/saidshl/ResultFlow/issues)
+- 💡 Start a [Discussion](https://github.com/saidshl/ResultFlow/discussions)
+- 📦 Visit [Repository](https://github.com/saidshl/ResultFlow)
 
 ---
 
-**Made with ❤️ by [said1993](https://github.com/said1993)**
+**Made with ❤️ by [Said Souhayel](https://github.com/saidshl)**
 
 Last updated: 2025-11-23 10:13:05 UTC

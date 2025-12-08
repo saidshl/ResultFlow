@@ -28,20 +28,34 @@ jobs:
           8.0.x
           9.0.x
     
+    - name: Extract version from tag or input
+      id: version
+      run: |
+        if [ "${{ github.event_name }}" == "workflow_dispatch" ] && [ -n "${{ github.event.inputs.version }}" ]; then
+          VERSION="${{ github.event.inputs.version }}"
+        elif [ "${{ github.ref_type }}" == "tag" ]; then
+          # Remove 'v' prefix from tag (v2.0.3 -> 2.0.3)
+          VERSION="${GITHUB_REF_NAME#v}"
+        else
+          VERSION="1.0.0"
+        fi
+        echo "VERSION=$VERSION" >> $GITHUB_OUTPUT
+        echo "Extracted version: $VERSION"
+    
     - name: Restore dependencies
       run: dotnet restore
     
     - name: Build solution
-      run: dotnet build --configuration Release --no-restore
+      run: dotnet build --configuration Release --no-restore -p:Version=${{ steps.version.outputs.VERSION }} -p:AssemblyVersion=${{ steps.version.outputs.VERSION }}.0 -p:FileVersion=${{ steps.version.outputs.VERSION }}.0
     
     - name: Pack ResultFlow
-      run: dotnet pack source/ResultFlow/ResultFlow.csproj --configuration Release --no-build --output ./artifacts
+      run: dotnet pack source/ResultFlow/ResultFlow.csproj --configuration Release --no-build --output ./artifacts -p:PackageVersion=${{ steps.version.outputs.VERSION }}
     
     - name: Pack ResultFlow.AspNetCore
-      run: dotnet pack source/ResultFlow.AspNetCore/ResultFlow.AspNetCore.csproj --configuration Release --no-build --output ./artifacts
+      run: dotnet pack source/ResultFlow.AspNetCore/ResultFlow.AspNetCore.csproj --configuration Release --no-build --output ./artifacts -p:PackageVersion=${{ steps.version.outputs.VERSION }}
     
     - name: Pack ResultFlow.FluentValidation
-      run: dotnet pack source/ResultFlow.FluentValidation/ResultFlow.FluentValidation.csproj --configuration Release --no-build --output ./artifacts
+      run: dotnet pack source/ResultFlow.FluentValidation/ResultFlow.FluentValidation.csproj --configuration Release --no-build --output ./artifacts -p:PackageVersion=${{ steps.version.outputs.VERSION }}
     
     - name: List packages
       run: ls -la ./artifacts

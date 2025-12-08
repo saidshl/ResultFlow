@@ -66,11 +66,25 @@ public readonly struct Result<TValue> : IEquatable<Result<TValue>>
     public static Result<TValue> Ok(TValue value) => new(value);
 
     /// <summary>
+    /// Creates a successful result with the given value (alias for Ok).
+    /// </summary>
+    /// <param name="value">The success value.</param>
+    /// <returns>A successful Result instance.</returns>
+    public static Result<TValue> Success(TValue value) => new(value);
+
+    /// <summary>
     /// Creates a failed result with the given error.
     /// </summary>
     /// <param name="error">The error that occurred.</param>
     /// <returns>A failed Result instance.</returns>
     public static Result<TValue> Failed(Error error) => new(error);
+
+    /// <summary>
+    /// Creates a failed result with the given error (alias for Failed).
+    /// </summary>
+    /// <param name="error">The error that occurred.</param>
+    /// <returns>A failed Result instance.</returns>
+    public static Result<TValue> Failure(Error error) => new(error);
 
     /// <summary>
     /// Performs a pattern match on the result and returns a value.
@@ -206,8 +220,8 @@ public readonly struct Result<TValue> : IEquatable<Result<TValue>>
     /// <returns>A string describing whether the result succeeded or failed.</returns>
     public override string ToString() =>
         IsOk
-            ? $"Success({_value})"
-            : $"Failure({_error?.Code}: {_error?.Message})";
+            ? $"Ok({_value})"
+            : $"Failed({_error?.Code}: {_error?.Message})";
 
     /// <summary>
     /// Compares two Result instances for equality.

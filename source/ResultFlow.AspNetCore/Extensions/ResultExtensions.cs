@@ -8,7 +8,7 @@ namespace ResultFlow.Extensions.AspNetCore;
 /// Extension methods for converting Result and Result{TValue} to IActionResult for ASP.NET Core controllers.
 /// Automatically maps error types to appropriate HTTP status codes.
 /// </summary>
-public static class AspNetMvcExtentions
+public static class AspNetMvcExtensions
 {
     /// <summary>
     /// Converts a Result{TValue} to an IActionResult.
@@ -92,6 +92,20 @@ public static class AspNetMvcExtentions
                 })
                 {
                     StatusCode = 401
+                },
+
+            // validation Error could also map to 422 - Unprocessable Entity
+            ValidationError validation =>
+                new ObjectResult(new
+                {
+                    code = validation.Code,
+                    message = validation.Message,
+                    details = validation.Details,
+                    metadata = validation.Metadata,
+                    timestamp = DateTime.UtcNow
+                })
+                {
+                    StatusCode = 422
                 },
 
             // 403 - Forbidden

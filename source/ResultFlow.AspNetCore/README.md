@@ -201,7 +201,7 @@ public class UserService : IUserService
         if (id <= 0)
         {
             _logger.LogWarning("Invalid user ID: {UserId}", id);
-            return Result<User>.Failure(
+            return Result<User>.Failed(
                 BadRequestError.ForInvalidParameter("id", "Must be positive", id)
             );
         }
@@ -210,12 +210,12 @@ public class UserService : IUserService
         if (user == null)
         {
             _logger.LogWarning("User not found: {UserId}", id);
-            return Result<User>.Failure(
+            return Result<User>.Failed(
                 NotFoundError.ByIdentifier("User", id)
             );
         }
 
-        return Result<User>.Success(user);
+        return Result<User>.Ok(user);
     }
 
     public async Task<Result<User>> CreateUserAsync(CreateUserRequest request)
@@ -224,7 +224,7 @@ public class UserService : IUserService
         if (string.IsNullOrWhiteSpace(request.Email))
         {
             _logger.LogWarning("Email is required");
-            return Result<User>.Failure(
+            return Result<User>.Failed(
                 BadRequestError.ForMissingField("Email")
             );
         }
@@ -232,7 +232,7 @@ public class UserService : IUserService
         if (!IsValidEmail(request.Email))
         {
             _logger.LogWarning("Invalid email format: {Email}", request.Email);
-            return Result<User>.Failure(
+            return Result<User>.Failed(
                 BadRequestError.ForInvalidParameter("Email", "Invalid format", request.Email)
             );
         }
@@ -242,7 +242,7 @@ public class UserService : IUserService
         if (existing != null)
         {
             _logger.LogWarning("Email already exists: {Email}", request.Email);
-            return Result<User>.Failure(
+            return Result<User>.Failed(
                 ConflictError.ForDuplicateResource("Email", request.Email)
             );
         }
@@ -260,12 +260,12 @@ public class UserService : IUserService
             await _repository.AddAsync(user);
 
             _logger.LogInformation("User created: {UserId}", user.Id);
-            return Result<User>.Success(user);
+            return Result<User>.Ok(user);
         }
         catch (Exception ex)
         {
             _logger.LogError(ex, "Error creating user");
-            return Result<User>.Failure(
+            return Result<User>.Failed(
                 InternalServerError.FromException(ex, "Error creating user")
             );
         }
@@ -277,7 +277,7 @@ public class UserService : IUserService
         if (user == null)
         {
             _logger.LogWarning("User not found: {UserId}", id);
-            return Result.Failure(
+            return Result.Failed(
                 NotFoundError.ByIdentifier("User", id)
             );
         }
@@ -286,12 +286,12 @@ public class UserService : IUserService
         {
             await _repository.DeleteAsync(user);
             _logger.LogInformation("User deleted: {UserId}", id);
-            return Result.Success();
+            return Result.Ok();
         }
         catch (Exception ex)
         {
             _logger.LogError(ex, "Error deleting user: {UserId}", id);
-            return Result.Failure(
+            return Result.Failed(
                 InternalServerError.ForOperation("DeleteUser", ex)
             );
         }

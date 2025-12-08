@@ -21,13 +21,25 @@ jobs:
     - name: Setup .NET ${{ matrix.dotnet-version }}
       uses: actions/setup-dotnet@v4
       with:
-        dotnet-version: ${{ matrix.dotnet-version }}
+        dotnet-version: |
+          8.0.x
+          9.0.x
+          10.0.x
     
     - name: Restore dependencies
       run: dotnet restore
     
     - name: Build
       run: dotnet build --configuration Release --no-restore
+    
+    - name: Test
+      run: dotnet test tests/ResultFlow.Tests/ResultFlow.Tests.csproj --configuration Release --no-build --verbosity normal --collect:"XPlat Code Coverage" --framework net${{ matrix.dotnet-version == '8.0.x' && '8.0' || '9.0' }}
+    
+    - name: Upload coverage to Codecov
+      uses: codecov/codecov-action@v4
+      if: matrix.dotnet-version == '9.0.x'
+      with:
+        fail_ci_if_error: false
     
     - name: Pack (validation only)
       run: |
