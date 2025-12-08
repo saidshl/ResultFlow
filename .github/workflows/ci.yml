@@ -1,6 +1,7 @@
 name: CI Build
 
 on:
+  workflow_dispatch:  # Allows manual triggering from GitHub UI
   push:
     branches: [ master, main, develop ]
   pull_request:
@@ -12,13 +13,13 @@ jobs:
     
     strategy:
       matrix:
-        dotnet-version: ['8.0.x', '9.0.x']
+        dotnet-version: ['8.0.x', '9.0.x', '10.0.x']
     
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
     
-    - name: Setup .NET ${{ matrix.dotnet-version }}
+    - name: Setup .NET
       uses: actions/setup-dotnet@v4
       with:
         dotnet-version: |
@@ -33,7 +34,11 @@ jobs:
       run: dotnet build --configuration Release --no-restore
     
     - name: Test
-      run: dotnet test tests/ResultFlow.Tests/ResultFlow.Tests.csproj --configuration Release --no-build --verbosity normal --collect:"XPlat Code Coverage" --framework net${{ matrix.dotnet-version == '8.0.x' && '8.0' || '9.0' }}
+      run: |
+        FRAMEWORK="net8.0"
+        if [ "${{ matrix.dotnet-version }}" == "9.0.x" ]; then FRAMEWORK="net9.0"; fi
+        if [ "${{ matrix.dotnet-version }}" == "10.0.x" ]; then FRAMEWORK="net10.0"; fi
+        dotnet test tests/ResultFlow.Tests/ResultFlow.Tests.csproj --configuration Release --no-build --verbosity normal --collect:"XPlat Code Coverage" --framework $FRAMEWORK
     
     - name: Upload coverage to Codecov
       uses: codecov/codecov-action@v4

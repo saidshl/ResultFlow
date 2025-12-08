@@ -24,6 +24,9 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ResultFlow.Samples.WebApi", "samples\ResultFlow.Samples.WebApi\ResultFlow.Samples.WebApi.csproj", "{04291478-F38B-176F-310A-0E4A410B38EF}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{89526DE3-548F-4853-B64E-83D7E004A5F0}"
+	ProjectSection(SolutionItems) = preProject
+		.github\workflows\publish-nuget.yml = .github\workflows\publish-nuget.yml
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{9121E910-944A-4B27-92C7-9F63826EEA23}"
 EndProject
