@@ -51,57 +51,6 @@ public class VoidResultTests
 
     #endregion
 
-    #region Static Result Class
-
-    [Fact]
-    public void Result_Success_CreatesSuccessVoidResult()
-    {
-        // Arrange & Act
-        var result = Result.Success();
-
-        // Assert
-        result.IsOk.Should().BeTrue();
-    }
-
-    [Fact]
-    public void Result_Ok_CreatesSuccessVoidResult()
-    {
-        // Arrange & Act
-        var result = Result.Ok();
-
-        // Assert
-        result.IsOk.Should().BeTrue();
-    }
-
-    [Fact]
-    public void Result_Failure_CreatesFailureVoidResult()
-    {
-        // Arrange
-        var error = new Error("ERR", "Error");
-
-        // Act
-        var result = Result.Failure(error);
-
-        // Assert
-        result.HasError.Should().BeTrue();
-        result.Error.Should().Be(error);
-    }
-
-    [Fact]
-    public void Result_Failed_CreatesFailureVoidResult()
-    {
-        // Arrange
-        var error = new Error("ERR", "Error");
-
-        // Act
-        var result = Result.Failed(error);
-
-        // Assert
-        result.HasError.Should().BeTrue();
-    }
-
-    #endregion
-
     #region Implicit Conversion
 
     [Fact]

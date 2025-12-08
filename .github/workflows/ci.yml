@@ -42,7 +42,7 @@ jobs:
     
     - name: Upload coverage to Codecov
       uses: codecov/codecov-action@v4
-      if: matrix.dotnet-version == '9.0.x'
+      if: matrix.dotnet-version == '10.0.x'
       with:
         fail_ci_if_error: false
     
